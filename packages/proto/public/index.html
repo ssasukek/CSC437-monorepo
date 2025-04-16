@@ -5,27 +5,91 @@
     <title>What is Day Trades</title>
     <meta name="viewport" content=""width=device-width, initial-scale="1.0">
     <style>
+        /*lab 3 : color*/
+        /*color of background (whole pg)*/
+        body{
+            margin: 0;
+            font-family: sans-serif;
+            background-color:grey;
+            color: black
+        }
 
+        /*color of background (header) & color of text in the header*/
+        header{
+            color:black;
+            background-color:antiquewhite;
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid white;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /*default color of text*/
+        text{
+            color:color-mix(in hsl shorter hue, color percentage, color percentage)
+        }
+
+        /*one or more accent colors, to use for links and/or headings*/
+        link{
+            color: aliceblue;
+        }
     </style>
 </head>
+<link rel="stylesheet" href="/styles/page.css"/>
 <body>
-    <div class="content">
-        <aside>
-            <nav>
+    <header>
+        <input
+            type="search"
+            class="search-bar"
+            placeholder="Search..."
+        />
+        <div class="drop-down">
+            <button class="drop-btn"></button>
+            <div class="content">
                 <a href="index.html">Home</a>
                 <a href="daytrades.html">Day Trades</a>
                 <a href="orders.html">Orders</a>
                 <a href="brokerageAcc.html">Brokerage Account</a>
                 <a href="strategies.html">Strategies</a>
-                <a href="assetTypes.html">Asset Type</a>
-            </nav>
-        </aside>
-    </div>
-
-    <header>
-        <h1>Welcome to Day Trades Overview</h1>
-        <p>The ultimate resources in futher understand, execute and mastered the skill of day trading</p>
+                <a href="assetTypes.html">Asset Type</a>                
+            </div>
+        </div>
     </header>
+
+    <main>
+        <section id="sec1" class="content-sec">
+            <h1>Welcome to Day Trades Overview</h1>
+            <p>The ultimate resources in futher understand, execute and mastered the skill of day trading</p>
+            <a href="daytrades.html">Read More</a>
+        </section>
+
+        <section id="sec2" class="content-sec">
+            <h1>Order Types</h1>
+            <p>Quick summary of market, limit, and stop orders.</p>
+            <a href="orders.html">Read More</a>
+        </section>
+
+        <section id="sec3" class="content-sec">
+            <h1>Brokerage Accounts</h1>
+            <p>Quick summary of account selection and setup.</p>
+            <a href="brokerageAcc.html">Read More</a>
+        </section>
+
+        <section id="sec4" class="content-sec">
+            <h1>Know the Strategies</h1>
+            <p>Learn the strategies and how to utilize them.</p>
+            <a href="strategies.html">Read More</a>
+        </section>
+        
+        <section id="sec5" class="content-sec">
+            <h1>Asset Types</h1>
+            <p>Quick summary of asset selection.</p>
+            <a href="assetTypes.html">Read More</a>
+        </section>
+    </main>
 
     <footer>
         <p>2025 Day Trades Index. All Rights Reserved.</p>
