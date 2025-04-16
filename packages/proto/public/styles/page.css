@@ -2,10 +2,44 @@
     dark color, so like mix of black and blue blend
     cover page should be simple, aesthetic yet engaging*/
 
-.search-bar{
 
+.dropdown{
+    position: relative;
 }
 
-.drop-down{
-    
+.dropbtn{
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    border: 1px solid;
+    border-radius: 5px;
+    min-width: 150px;
+    box-shadow: 0 3px 6px grey;
+}
+
+.dropdown-content a{
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: grey;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a:hover{
+    background-color: #dce5ed;
+    color: rgb(42, 143, 42);
+}
+
+.dropdown:hover .dropdown-content, 
+.dropdown-content:hover{
+    display:block;
 }
