@@ -19,8 +19,8 @@
     position: absolute;
     right: 0;
     top: 100%;
-    background: white;
-    border: 1px solid;
+    background: var(--color-text-inverted);
+    border: 1px solid var(--color-border);
     border-radius: 5px;
     min-width: 150px;
     box-shadow: 0 3px 6px grey;
@@ -35,8 +35,8 @@
 }
 
 .dropdown-content a:hover{
-    background-color: #dce5ed;
-    color: rgb(42, 143, 42);
+    background-color: var(--color-link-hover);
+    color: var(--color-link);
 }
 
 .dropdown:hover .dropdown-content, 
