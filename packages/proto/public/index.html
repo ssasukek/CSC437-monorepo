@@ -12,6 +12,14 @@
             background-size: cover;
             background-attachment: fixed;
             color: var(--color-text-inverted);
+            font-family: var(--font-body);
+            font-size: var(--font-size-base);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--color-link);
         }
 
         main {
@@ -32,6 +40,10 @@
     </style>
     <link rel="stylesheet" href="/styles/page.css"/>
     <link rel="stylesheet" href="/styles/tokens.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -56,6 +68,9 @@
 
     <main>
         <section id="sec1" class="content-sec hero">
+            <svg class="icon">
+                <use href="/icons/trading-icons.svg#icon-candlestick" />
+            </svg>
             <h1>Welcome to Day Trades Overview</h1>
             <p>The ultimate resources in futher understand, execute and mastered the skill of day trading</p>
             <a href="daytrades.html">Read More</a>

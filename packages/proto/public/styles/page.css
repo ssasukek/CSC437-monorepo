@@ -105,3 +105,11 @@ header{
 .search-bar::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
+
+svg.icon {
+  display: inline;
+  height: 2em;
+  width: 2em;
+  vertical-align: top;
+  fill: currentColor;
+}
