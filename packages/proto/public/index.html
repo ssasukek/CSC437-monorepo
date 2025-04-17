@@ -8,23 +8,16 @@
         /*lab 3 : color*/
         /*color of background (whole pg)*/
         body{
-            margin: 0;
-            font-family: sans-serif;
-            background-color:grey;
-            color: black
+            background: var(--gradient-hero);
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--color-text-inverted);
         }
 
-        /*color of background (header) & color of text in the header*/
-        header{
-            color:black;
-            background-color:antiquewhite;
-            position: sticky;
-            top: 0;
-            border-bottom: 1px solid white;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
         /*default color of text*/
@@ -62,7 +55,7 @@
     </header>
 
     <main>
-        <section id="sec1" class="content-sec">
+        <section id="sec1" class="content-sec hero">
             <h1>Welcome to Day Trades Overview</h1>
             <p>The ultimate resources in futher understand, execute and mastered the skill of day trading</p>
             <a href="daytrades.html">Read More</a>

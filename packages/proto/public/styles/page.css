@@ -2,6 +2,54 @@
     dark color, so like mix of black and blue blend
     cover page should be simple, aesthetic yet engaging*/
 
+/*color of background (header) & color of text in the header*/
+header{
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 60vh;
+    padding: 4rem 2rem;
+    text-align: center;
+
+    position: relative;
+    
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background: rgba(200, 200, 200, 0.15);
+    border-radius: 50% / 30%;
+    z-index: 0;
+    top: 10%;
+    left: 10%;
+}
+
+.hero h1,
+.hero p,
+.hero a {
+    position: relative;
+    z-index: 1;
+    color: var(--color-text-inverted);
+}
 
 .dropdown{
     position: relative;
@@ -30,7 +78,7 @@
     display: block;
     padding: 0.5rem 1rem;
     text-decoration: none;
-    color: grey;
+    color: var(--color-text);
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -42,4 +90,18 @@
 .dropdown:hover .dropdown-content, 
 .dropdown-content:hover{
     display:block;
+}
+
+.search-bar{
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    padding: 0.25rem 0.5rem;
+    width: 300px;
+    color: white;
+    font-size: 1rem;
+}
+
+.search-bar::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
