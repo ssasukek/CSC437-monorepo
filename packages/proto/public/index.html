@@ -40,6 +40,7 @@
     </style>
     <link rel="stylesheet" href="/styles/page.css"/>
     <link rel="stylesheet" href="/styles/tokens.css"/>
+    <link rel="stylesheet" href="/styles/reset.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -67,38 +68,42 @@
     </header>
 
     <main>
-        <section id="sec1" class="content-sec hero">
-            <svg class="icon">
-                <use href="/icons/trading-icons.svg#icon-candlestick" />
-            </svg>
-            <h1>Welcome to Day Trades Overview</h1>
-            <p>The ultimate resources in futher understand, execute and mastered the skill of day trading</p>
-            <a href="daytrades.html">Read More</a>
-        </section>
+        <div class="grid-cont">
+            <section id="sec1" class="content-sec hero">
+                <svg class="icon">
+                    <use href="/icons/trading-icons.svg#icon-candlestick" />
+                </svg>
+                <h1>Welcome to Day Trades Overview</h1>
+                <p>The ultimate resources in futher understand, execute and mastered the skill of day trading</p>
+                <a href="daytrades.html">Read More</a>
+            </section>
+            <div class="cards">
+                <section id="sec2" class="card">
+                    <h1>Order Types</h1>
+                    <p>Quick summary of market, limit, and stop orders.</p>
+                    <a href="orders.html">Read More</a>
+                </section>
 
-        <section id="sec2" class="content-sec">
-            <h1>Order Types</h1>
-            <p>Quick summary of market, limit, and stop orders.</p>
-            <a href="orders.html">Read More</a>
-        </section>
+                <section id="sec3" class="card">
+                    <h1>Brokerage Accounts</h1>
+                    <p>Quick summary of account selection and setup.</p>
+                    <a href="brokerageAcc.html">Read More</a>
+                </section>
 
-        <section id="sec3" class="content-sec">
-            <h1>Brokerage Accounts</h1>
-            <p>Quick summary of account selection and setup.</p>
-            <a href="brokerageAcc.html">Read More</a>
-        </section>
-
-        <section id="sec4" class="content-sec">
-            <h1>Know the Strategies</h1>
-            <p>Learn the strategies and how to utilize them.</p>
-            <a href="strategies.html">Read More</a>
-        </section>
-        
-        <section id="sec5" class="content-sec">
-            <h1>Asset Types</h1>
-            <p>Quick summary of asset selection.</p>
-            <a href="assetTypes.html">Read More</a>
-        </section>
+                <section id="sec4" class="card">
+                    <h1>Know the Strategies</h1>
+                    <p>Learn the strategies and how to utilize them.</p>
+                    <a href="strategies.html">Read More</a>
+                </section>
+                
+                <section id="sec5" class="card">
+                    <h1>Asset Types</h1>
+                    <p>Quick summary of asset selection.</p>
+                    <a href="assetTypes.html">Read More</a>
+                </section>
+            </div>
+            
+        </div>
     </main>
 
     <footer>
