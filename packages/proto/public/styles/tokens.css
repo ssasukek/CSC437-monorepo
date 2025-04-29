@@ -44,4 +44,14 @@
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
+
+   
+}
+
+/* Dark-Mode */
+body.dark-mode {
+  --color-background-page: #032;
+  --color-background-card: #111;
+  --color-text: #eee;
+  --color-link: var(--color-accent-inverted);
 }

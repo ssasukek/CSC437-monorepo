@@ -4,56 +4,36 @@
     <meta charset="UTF-8">
     <title>What is Day Trades</title>
     <meta name="viewport" content=""width=device-width, initial-scale="1.0">
-    <style>
-        /*lab 3 : color*/
-        /*color of background (whole pg)*/
-        body{
-            background: var(--gradient-hero);
-            background-size: cover;
-            background-attachment: fixed;
-            color: var(--color-text-inverted);
-            font-family: var(--font-body);
-            font-size: var(--font-size-base);
-        }
 
-        h1, h2, h3, h4 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            color: var(--color-link);
-        }
-
-        main {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        /*default color of text*/
-        text{
-            color:color-mix(in hsl shorter hue, color percentage, color percentage)
-        }
-
-        /*one or more accent colors, to use for links and/or headings*/
-        link{
-            color: aliceblue;
-        }
-    </style>
+    <!-- page style -->
     <link rel="stylesheet" href="/styles/page.css"/>
+
+    <!-- design tokens -->
     <link rel="stylesheet" href="/styles/tokens.css"/>
+
+    <!-- reset -->
     <link rel="stylesheet" href="/styles/reset.css"/>
+
+    <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
+    
+    <!-- dark-mode -->
+    <script type="module" src="darkmode.js"></script>
 </head>
 
 <body>
     <header>
-        <input
-            type="search"
-            class="search-bar"
-            placeholder="Search..."
-        />
+        <input type="search" class="search-bar" placeholder="Search..." />
+
+        <label class="dark-toggle">
+            <span class="icon-moon">🌙</span>
+            <input type="checkbox" class="dark-checkbox" />
+            <span class="toggle-switch"></span>
+            <span class="icon-sun">☀️</span>
+        </label>
+
         <div class="dropdown">
             <button class="dropbtn" aria-label="Menu">☰</button>
             <div class="dropdown-content">
@@ -65,11 +45,12 @@
                 <a href="assetTypes.html">Asset Type</a>             
             </div>
         </div>
+        
     </header>
 
     <main>
         <div class="grid-cont">
-            <section id="sec1" class="content-sec hero">
+            <section id="sec1" class="hero">
                 <svg class="icon">
                     <use href="/icons/trading-icons.svg#icon-candlestick" />
                 </svg>

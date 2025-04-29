@@ -3,157 +3,187 @@
     cover page should be simple, aesthetic yet engaging*/
 
 /*color of background (header) & color of text in the header*/
-header{
-    position: sticky;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    padding: 1rem 2rem;
-    background: rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(6px);
-
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
 }
 
-.main{
-    grid-column: 4 / span 9;
+body {
+  background: var(--gradient-hero);
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--color-text-inverted);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
 }
 
-.grid-cont{
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: var(--spacing-lg);
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-lg);
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-link);
 }
 
-.hero{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 60vh;
-    padding: 4rem 2rem;
-    text-align: center;
-
-    position: relative;
-    
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 80%;
-    height: 80%;
-    background: rgba(200, 200, 200, 0.15);
-    border-radius: 50% / 30%;
-    z-index: 0;
-    top: 10%;
-    left: 10%;
+/*default color of text*/
+text {
+  color: color-mix(in hsl shorter hue, color percentage, color percentage);
+}
+
+/*one or more accent colors, to use for links and/or headings*/
+link {
+  color: aliceblue;
+}
+
+.main {
+  grid-column: 4 / span 9;
+}
+
+.grid-cont {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.grid-cont > .cards {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.hero {
+  grid-column: 1 / -1;
+  background: var(--gradient-hero);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 60vh;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  position: relative;
 }
 
 .hero h1,
 .hero p,
 .hero a {
-    position: relative;
-    z-index: 1;
-    color: var(--color-text-inverted);
+  position: relative;
+  z-index: 1;
+  color: var(--color-text-inverted);
 }
 
-.dropdown{
-    position: relative;
+.dropdown {
+  position: relative;
 }
 
-.dropbtn{
-    font-size: 1rem;
-    line-height: 1;
-    padding: 0.25rem 0.5rem;
-    cursor: pointer;
+.dropbtn {
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
 }
 
-.dropdown-content{
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background: var(--color-text-inverted);
-    border: 1px solid var(--color-border);
-    border-radius: 5px;
-    min-width: 150px;
-    box-shadow: 0 3px 6px grey;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: var(--color-text-inverted);
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  min-width: 150px;
+  box-shadow: 0 3px 6px grey;
 }
 
-.dropdown-content a{
-    display: block;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    color: var(--color-text);
-    transition: background-color 0.2s ease, color 0.2s ease;
+.dropdown-content a {
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.dropdown-content a:hover{
-    background-color: var(--color-link-hover);
-    color: var(--color-link);
+.dropdown-content a:hover {
+  background-color: var(--color-link-hover);
+  color: var(--color-link);
 }
 
-.dropdown:hover .dropdown-content, 
-.dropdown-content:hover{
-    display:block;
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+  display: block;
 }
 
-.search-bar{
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid white;
-    padding: 0.25rem 0.5rem;
-    width: 300px;
-    color: white;
-    font-size: 1rem;
+.search-bar {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  padding: 0.25rem 0.5rem;
+  width: 300px;
+  color: white;
+  font-size: 1rem;
 }
 
 .search-bar::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 svg.icon {
-    display: inline;
-    height: 2em;
-    width: 2em;
-    vertical-align: top;
-    fill: currentColor;
-    font-family: var(--font-display);
-    font-size: 1.5rem;
+  display: inline;
+  height: 2em;
+  width: 2em;
+  vertical-align: top;
+  fill: currentColor;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
 }
 
-.cards{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--spacing-md); 
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-md);
 }
 
-.card{
-    background: var(--color-background-page);
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    padding: var(--spacing-md);
-    display: flex;
-    flex-direction: column;
+.card {
+  background: var(--color-background-page);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
 }
 
 .list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
 }
-
 
 .features {
-    display: flex;
-    gap: var(--spacing-md);
-    overflow-x: auto;
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
 }
-.feature { flex: 0 0 auto; }
+.feature {
+  flex: 0 0 auto;
+}
