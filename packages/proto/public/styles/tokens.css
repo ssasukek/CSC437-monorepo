@@ -16,13 +16,14 @@
     --color-text-inverted: rgb(255 255 255);
 
     /* Gradient */
+    /* light mode */
     --gradient-page:
     linear-gradient(
       90deg,
       #f8fafc 0%,
       #e2e8f0 100%
     );
-    
+    /* dark mode */
     --gradient-hero:
     linear-gradient(
       135deg,
