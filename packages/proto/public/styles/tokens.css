@@ -51,6 +51,8 @@
 
 /* Dark-Mode */
 body.dark-mode {
+  --gradient-hero-light: var(--gradient-hero);
+
   --color-background-page: #032;
   --color-background-card: #111;
   --color-text: #eee;
