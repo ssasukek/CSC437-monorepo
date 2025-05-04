@@ -53,21 +53,14 @@ link {
   grid-column: 4 / span 9;
 }
 
-.grid-cont {
+/* .grid-cont {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--spacing-lg);
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--spacing-lg);
-}
-
-.grid-cont > .cards {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--spacing-md);
-}
+} */
 
 .hero {
   grid-column: 1 / -1;
@@ -163,18 +156,12 @@ svg.icon {
 }
 
 /* .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--spacing-md);
-}
-
-.card {
-  background: var(--color-background-page);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  padding: var(--spacing-md);
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin: 0 auto;
+  max-width: calc(240px * 3 + var(--spacing-md)*2);
 } */
 
 .dark-toggle {
@@ -185,17 +172,8 @@ svg.icon {
   display: flex;
   align-items: center;
   padding: 0.25rem;
-
-  /* border: 2px solid var(--color-text-inverted);
-  border-radius: 0.5rem;
-  transition: background 0.3s, border-color 0.3s; */
 }
 
-/* .dark-toggle:hover,
-.dark-toggle:focus-within {
-  border-color: var(--color-link);
-  background: rgba(0,0,0,0.4);
-} */
 
 .dark-checkbox {
   position: absolute;

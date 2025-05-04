@@ -21,13 +21,15 @@
         import { define } from "@calpoly/mustang";
         import { TradeCard } from "/src/trade-card.js";
         define({ "trade-card": TradeCard });
+        import { TradeCards } from '/src/trade-cards.js';
+        define({ 'trade-cards': TradeCards });
     </script>
+
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    
 </head>
 
 <body>
@@ -65,7 +67,8 @@
                 <p>The ultimate resources in futher understand, execute and mastered the skill of day trading</p>
                 <a href="daytrades.html">Read More</a>
             </section>
-            <div class="cards">
+            
+            <trade-cards src="/data/trade-cards.json">
                 <trade-card
                     id="'sec2"
                     title="Order Types"
@@ -97,7 +100,7 @@
                     link-text="Read More">
                     Quick summary of asset selection.
                 </trade-card>
-            </div>
+            </trade-cards>
             
         </div>
     </main>

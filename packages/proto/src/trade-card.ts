@@ -1,3 +1,5 @@
+// defines individual card componenet
+
 import { LitElement, html, css } from 'lit';
 import { property } from 'lit/decorators.js';
 import reset from './styles/reset.css.ts';
@@ -14,10 +16,16 @@ export class TradeCard extends LitElement {
       :host {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         background: var(--color-background-page);
         border: 1px solid var(--color-border);
-        border-radius: 4px;
+        border-radius: 999px;      
+        width: 440px;
+        height: 160px;
         padding: var(--spacing-md);
+        box-sizing: border-box;
+        text-align: center;
       }
 
       h1 {
