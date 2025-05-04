@@ -1,8 +1,10 @@
 {
   "name": "proto",
   "version": "1.0.0",
-  "main": "public/index.html",
+  "main": "index.html",
   "scripts": {
+    "dev": "npx vite",
+    "build": "npx tsc && npx vite build",
     "start": "http-server -p 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +18,6 @@
   },
   "devDependencies": {
     "typescript": "^5.8.3",
-    "vite": "^6.3.3"
+    "vite": "^6.3.4"
   }
 }

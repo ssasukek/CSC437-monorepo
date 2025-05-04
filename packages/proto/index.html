@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>What is Day Trades</title>
-    <meta name="viewport" content=""width=device-width, initial-scale="1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- page style -->
     <link rel="stylesheet" href="/styles/page.css"/>
@@ -14,13 +14,20 @@
     <!-- reset -->
     <link rel="stylesheet" href="/styles/reset.css"/>
 
+    <!-- dark-mode -->
+    <script type="module" src="/darkmode.js"></script>
+
+    <script type="module">
+        import { define } from "@calpoly/mustang";
+        import { TradeCard } from "/src/trade-card.js";
+        define({ "trade-card": TradeCard });
+    </script>
+
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- dark-mode -->
-    <script type="module" src="darkmode.js"></script>
 </head>
 
 <body>
@@ -37,12 +44,12 @@
         <div class="dropdown">
             <button class="dropbtn" aria-label="Menu">☰</button>
             <div class="dropdown-content">
-                <a href="index.html">Home</a>
-                <a href="daytrades.html">Day Trades</a>
-                <a href="orders.html">Orders</a>
-                <a href="brokerageAcc.html">Brokerage Account</a>
-                <a href="strategies.html">Strategies</a>
-                <a href="assetTypes.html">Asset Type</a>             
+                <a href="/index.html">Home</a>
+                <a href="/daytrades.html">Day Trades</a>
+                <a href="/orders.html">Orders</a>
+                <a href="/brokerageAcc.html">Brokerage Account</a>
+                <a href="/strategies.html">Strategies</a>
+                <a href="/assetTypes.html">Asset Type</a>             
             </div>
         </div>
         
@@ -59,29 +66,37 @@
                 <a href="daytrades.html">Read More</a>
             </section>
             <div class="cards">
-                <section id="sec2" class="card">
-                    <h1>Order Types</h1>
-                    <p>Quick summary of market, limit, and stop orders.</p>
-                    <a href="orders.html">Read More</a>
-                </section>
+                <trade-card
+                    id="'sec2"
+                    title="Order Types"
+                    href="orders.html"
+                    link-text="Read More">
+                    Quick summary of market, limit, and stop orders.
+                </trade-card>
 
-                <section id="sec3" class="card">
-                    <h1>Brokerage Accounts</h1>
-                    <p>Quick summary of account selection and setup.</p>
-                    <a href="brokerageAcc.html">Read More</a>
-                </section>
+                <trade-card
+                    id="sec3"
+                    title="Brokerage Accounts"
+                    href="brokerageAcc.html"
+                    link-text="Read More">
+                    Quick summary of account selection and setup.
+                </trade-card>
 
-                <section id="sec4" class="card">
-                    <h1>Know the Strategies</h1>
-                    <p>Learn the strategies and how to utilize them.</p>
-                    <a href="strategies.html">Read More</a>
-                </section>
+                <trade-card
+                    id="sec4"
+                    title="Know the Strategies"
+                    href="strategies.html"
+                    link-text="Read More">
+                    Learn the strategies and how to utilize them.
+                </trade-card>
                 
-                <section id="sec5" class="card">
-                    <h1>Asset Types</h1>
-                    <p>Quick summary of asset selection.</p>
-                    <a href="assetTypes.html">Read More</a>
-                </section>
+                <trade-card
+                    id="sec5"
+                    title="Asset Types"
+                    href="assetTypes.html"
+                    link-text="Read More">
+                    Quick summary of asset selection.
+                </trade-card>
             </div>
             
         </div>
