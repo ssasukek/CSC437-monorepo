@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { CardData } from "../../models/cardData";
+import { CardData } from "../models/cardData";
 
 const CardDataSchema = new Schema<CardData> ({
     id: {
@@ -29,3 +29,13 @@ const CardDataSchema = new Schema<CardData> ({
     }
 }, {collection: "dt_traders"})    
 
+const CardDataModel = model<CardData>("CardData", CardDataSchema);
+
+function index(): Promise<CardData[]> {
+    return CardDataModel.find().exec();
+}
+  
+function get(id: string): Promise<CardData | null> {
+    return CardDataModel.findById(id).exec();
+}
+export default { index, get };
