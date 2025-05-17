@@ -23,5 +23,6 @@ function getMongoURI(dbname: string) {
 export function connect(dbname: string) {
   mongoose
     .connect(getMongoURI(dbname))
+    .then(() => console.log("MongoDB connected"))
     .catch((error) => console.log(error));
 }

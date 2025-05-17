@@ -36,6 +36,18 @@ function index(): Promise<CardData[]> {
 }
   
 function get(id: string): Promise<CardData | null> {
-    return CardDataModel.findById(id).exec();
+    return CardDataModel.findById({ id }).exec();
 }
-export default { index, get };
+
+function create(json: CardData) {
+    return new CardDataModel(json).save();
+}
+
+function update(id: string, json: CardData) {
+    return CardDataModel.findByIdAndUpdate(id, json, {new:true}).exec();
+}
+
+function remove(id: string) {
+    return CardDataModel.findByIdAndDelete(id).exec().then(() => {});
+}
+export default { index, get, create, update, remove };

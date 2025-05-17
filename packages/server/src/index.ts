@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import { connect } from "./services/mongo";
 import dt_traders from "./services/CardData-svc";
 import cardDataRouter from "./routes/cardData";
+import authRouter, { authenticateUser } from "./routes/auth";
 
 connect("DTCluster");
 
@@ -21,6 +22,10 @@ app.listen(port, () => {
 });
 
 app.use("/api/cardData", cardDataRouter);
+
+
+
+app.use("/api/cardData", authenticateUser, cardDataRouter);
 
 app.get("/cardData/:id", (req: Request, res: Response) => {
   const { id } = req.params;
