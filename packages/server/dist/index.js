@@ -23,22 +23,26 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_express = __toESM(require("express"));
 var import_mongo = require("./services/mongo");
-var import_CardData_svc = __toESM(require("./services/CardData-svc"));
+var import_cardData_svc = __toESM(require("./services/cardData-svc"));
+var import_cardData = __toESM(require("./routes/cardData"));
 (0, import_mongo.connect)("DTCluster");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
+app.use(import_express.default.json());
+app.use("/api/cardData", import_cardData.default);
+app.use(import_express.default.static(process.env.STATIC || "public"));
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
 });
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
 app.get("/cardData/:id", (req, res) => {
   const { id } = req.params;
-  import_CardData_svc.default.get(id).then((data) => {
+  import_cardData_svc.default.get(id).then((data) => {
     if (data) res.set("Content-Type", "application/json").send(JSON.stringify(data));
     else res.status(404).send();
   });
+});
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });

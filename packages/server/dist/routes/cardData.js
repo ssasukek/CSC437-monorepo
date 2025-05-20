@@ -26,33 +26,33 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var mongo_exports = {};
-__export(mongo_exports, {
-  connect: () => connect
+var cardData_exports = {};
+__export(cardData_exports, {
+  default: () => cardData_default
 });
-module.exports = __toCommonJS(mongo_exports);
-var import_mongoose = __toESM(require("mongoose"));
-var import_dotenv = __toESM(require("dotenv"));
-import_mongoose.default.set("debug", true);
-import_dotenv.default.config();
-function getMongoURI(dbname) {
-  let connection_string = `mongodb://localhost:27017/${dbname}`;
-  const { MONGO_USER, MONGO_PWD, MONGO_CLUSTER } = process.env;
-  if (MONGO_USER && MONGO_PWD && MONGO_CLUSTER) {
-    console.log(
-      "Connecting to MongoDB at",
-      `mongodb+srv://${MONGO_USER}:<password>@${MONGO_CLUSTER}/${dbname}`
-    );
-    connection_string = `mongodb+srv://${MONGO_USER}:${MONGO_PWD}@${MONGO_CLUSTER}/${dbname}?retryWrites=true&w=majority`;
-  } else {
-    console.log("Connecting to MongoDB at ", connection_string);
-  }
-  return connection_string;
-}
-function connect(dbname) {
-  import_mongoose.default.connect(getMongoURI(dbname)).then(() => console.log("MongoDB connected")).catch((error) => console.log(error));
-}
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  connect
+module.exports = __toCommonJS(cardData_exports);
+var import_express = require("express");
+var import_cardData_svc = __toESM(require("../services/cardData-svc"));
+const router = (0, import_express.Router)();
+router.get("/", (_req, res) => {
+  import_cardData_svc.default.index().then((list) => res.json(list)).catch((err) => res.status(500).send(err));
 });
+router.get("/:id", (req, res) => {
+  import_cardData_svc.default.get(req.params.id).then((card) => {
+    if (!card) return res.status(404).end();
+    res.json(card);
+  }).catch((err) => res.status(500).send(err));
+});
+router.post("/", (req, res) => {
+  const newCard = req.body;
+  import_cardData_svc.default.create(newCard).then((saved) => res.status(201).json(saved)).catch((err) => res.status(500).send(err));
+});
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
+  const updated = req.body;
+  import_cardData_svc.default.update(id, updated).then((card) => res.json(card)).catch((err) => res.status(404).send(err));
+});
+router.delete("/:id", (req, res) => {
+  import_cardData_svc.default.remove(req.params.id).then(() => res.status(204).end()).catch((err) => res.status(404).send(err));
+});
+var cardData_default = router;

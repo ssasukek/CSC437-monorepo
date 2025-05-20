@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import { connect } from "./services/mongo";
-import dt_traders from "./services/CardData-svc";
+import dt_traders from "./services/cardData-svc";
 import cardDataRouter from "./routes/cardData";
-import authRouter, { authenticateUser } from "./routes/auth";
+// import authRouter, { authenticateUser } from "./routes/auth";
 
 connect("DTCluster");
 
@@ -12,20 +12,15 @@ const staticDir = process.env.STATIC || "public";
 
 app.use(express.static(staticDir));
 app.use(express.json());
+app.use("/api/cardData", cardDataRouter);
+app.use(express.static(process.env.STATIC || "public"));
+
 
 app.get("/hello", (req: Request, res: Response) => {
     res.send("Hello, World");
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
-
-app.use("/api/cardData", cardDataRouter);
-
-
-
-app.use("/api/cardData", authenticateUser, cardDataRouter);
+// app.use("/api/cardData", authenticateUser, cardDataRouter);
 
 app.get("/cardData/:id", (req: Request, res: Response) => {
   const { id } = req.params;
@@ -37,4 +32,8 @@ app.get("/cardData/:id", (req: Request, res: Response) => {
     else res
       .status(404).send();
   });
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });

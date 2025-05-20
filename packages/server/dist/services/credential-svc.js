@@ -26,33 +26,36 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var mongo_exports = {};
-__export(mongo_exports, {
-  connect: () => connect
+var credential_svc_exports = {};
+__export(credential_svc_exports, {
+  default: () => credential_svc_default
 });
-module.exports = __toCommonJS(mongo_exports);
-var import_mongoose = __toESM(require("mongoose"));
-var import_dotenv = __toESM(require("dotenv"));
-import_mongoose.default.set("debug", true);
-import_dotenv.default.config();
-function getMongoURI(dbname) {
-  let connection_string = `mongodb://localhost:27017/${dbname}`;
-  const { MONGO_USER, MONGO_PWD, MONGO_CLUSTER } = process.env;
-  if (MONGO_USER && MONGO_PWD && MONGO_CLUSTER) {
-    console.log(
-      "Connecting to MongoDB at",
-      `mongodb+srv://${MONGO_USER}:<password>@${MONGO_CLUSTER}/${dbname}`
-    );
-    connection_string = `mongodb+srv://${MONGO_USER}:${MONGO_PWD}@${MONGO_CLUSTER}/${dbname}?retryWrites=true&w=majority`;
-  } else {
-    console.log("Connecting to MongoDB at ", connection_string);
-  }
-  return connection_string;
+module.exports = __toCommonJS(credential_svc_exports);
+var import_bcryptjs = __toESM(require("bcryptjs"));
+var import_mongoose = require("mongoose");
+const credentialSchema = new import_mongoose.Schema(
+  {
+    username: { type: String, required: true, trim: true },
+    hashedPassword: { type: String, required: true }
+  },
+  { collection: "user_credentials" }
+);
+const CredentialModel = (0, import_mongoose.model)("Credential", credentialSchema);
+function create(username, password) {
+  return CredentialModel.find({ username }).then((found) => {
+    if (found.length) throw new Error(`Username exists: ${username}`);
+  }).then(() => import_bcryptjs.default.genSalt(10)).then((salt) => import_bcryptjs.default.hash(password, salt)).then((hash) => new CredentialModel({ username, hashedPassword: hash }).save());
 }
-function connect(dbname) {
-  import_mongoose.default.connect(getMongoURI(dbname)).then(() => console.log("MongoDB connected")).catch((error) => console.log(error));
+function verify(username, password) {
+  return CredentialModel.find({ username }).then((found) => {
+    if (!found || found.length !== 1)
+      throw new Error("Invalid username or password");
+    return found[0];
+  }).then(
+    (creds) => import_bcryptjs.default.compare(password, creds.hashedPassword).then((ok) => {
+      if (!ok) throw new Error("Invalid username or password");
+      return creds.username;
+    })
+  );
 }
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  connect
-});
+var credential_svc_default = { create, verify };

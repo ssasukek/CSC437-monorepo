@@ -1,10 +1,10 @@
-import { Router, Request, Response } from "express";
-import CardDataSvc from "../services/CardData-svc";
+import {Router, Request, Response } from "express";
+import CardDataSvc from "../services/cardData-svc";
 import { CardData } from "../models/cardData";
 
 const router = Router();
 
-router.get("/", (_req, res: Response) => {
+router.get("/", (_req: any, res: Response) => {
     CardDataSvc
         .index()
         .then((list: CardData[]) => res.json(list))
