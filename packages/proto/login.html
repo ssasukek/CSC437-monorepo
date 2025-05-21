@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <script type="module">
+    import { define, Auth } from "@calpoly/mustang";
+    import { LoginFormElement } from "/src/auth/login-form";
+    define({
+      "mu-auth": Auth.Provider,
+      "login-form": LoginFormElement
+    });
+  </script>
+</head>
+<body>
+  <mu-auth>
+    <login-form api="/auth/login" redirect="/">
+      <label>
+        <span>Username:</span>
+        <input name="username" />
+      </label>
+      <label>
+        <span>Password:</span>
+        <input type="password" name="password" />
+      </label>
+    </login-form>
+  </mu-auth>
+</body>
+</html>

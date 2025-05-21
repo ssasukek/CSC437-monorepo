@@ -37,7 +37,7 @@ var import_express = __toESM(require("express"));
 var import_jsonwebtoken = __toESM(require("jsonwebtoken"));
 var import_credential_svc = __toESM(require("../services/credential-svc"));
 import_dotenv.default.config();
-const TOKEN_SECRET = process.env.TOKEN_SECRET || "CHANGE_ME";
+const TOKEN_SECRET = process.env.TOKEN_SECRET || "sake";
 const router = import_express.default.Router();
 function generateAccessToken(username) {
   return new Promise((resolve, reject) => {

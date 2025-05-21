@@ -9,34 +9,51 @@ const credentialSchema = new Schema<Credential>(
   },
   { collection: "user_credentials" }
 );
-const CredentialModel = model<Credential>("Credential", credentialSchema);
+const credentialModel = model<Credential>("Credential", credentialSchema);
 
 /** create new user credential (throws if username exists) */
 function create(username: string, password: string): Promise<Credential> {
-  return CredentialModel.find({ username })
-    .then(found => {
-      if (found.length) throw new Error(`Username exists: ${username}`);
-    })
-    .then(() => bcrypt.genSalt(10))
-    .then(salt => bcrypt.hash(password, salt))
-    .then(hash => new CredentialModel({ username, hashedPassword: hash }).save());
+  return credentialModel
+  .find({ username })
+  .then((found: Credential[]) => {
+    if (found.length) throw `Username exists: ${username}`
+  })
+  .then(() =>
+    bcrypt
+      .genSalt(10)
+      .then((salt: string) => bcrypt.hash(password, salt))
+      .then((hashedPassword: string) => {
+        const creds = new credentialModel({
+          username,
+          hashedPassword
+        });
+        return creds.save();
+      })
+  );
 }
 
 /** verify username/password, resolve username on success */
-function verify(username: string, password: string): Promise<string> {
-  return CredentialModel.find({ username })
-    .then(found => {
+function verify(username: string, password: string) : Promise<string>
+{
+  return credentialModel
+    .find({ username })
+    .then((found) => {
       if (!found || found.length !== 1)
-        throw new Error("Invalid username or password");
+        throw "Invalid username or password";
       return found[0];
     })
-    .then(creds =>
-      bcrypt.compare(password, creds.hashedPassword)
-        .then(ok => {
-          if (!ok) throw new Error("Invalid username or password");
-          return creds.username;
+    .then(
+      (credsOnFile : Credential) =>
+        bcrypt.compare(
+          password,
+          credsOnFile.hashedPassword
+        )
+        .then((result: boolean) => {
+          if (!result)
+            throw("Invalid username or password");
+          return credsOnFile.username;
         })
-    );
+      );
 }
 
 export default { create, verify };

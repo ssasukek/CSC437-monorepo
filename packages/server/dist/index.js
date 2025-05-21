@@ -23,26 +23,20 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_express = __toESM(require("express"));
 var import_mongo = require("./services/mongo");
-var import_cardData_svc = __toESM(require("./services/cardData-svc"));
-var import_cardData = __toESM(require("./routes/cardData"));
-(0, import_mongo.connect)("DTCluster");
+var import_cardDatas = __toESM(require("./routes/cardDatas"));
+var import_auth = __toESM(require("./routes/auth"));
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
 app.use(import_express.default.json());
-app.use("/api/cardData", import_cardData.default);
-app.use(import_express.default.static(process.env.STATIC || "public"));
+app.use("/api/cardDatas", import_cardDatas.default);
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
 });
-app.get("/cardData/:id", (req, res) => {
-  const { id } = req.params;
-  import_cardData_svc.default.get(id).then((data) => {
-    if (data) res.set("Content-Type", "application/json").send(JSON.stringify(data));
-    else res.status(404).send();
-  });
-});
+app.use("/auth", import_auth.default);
+app.use("/api/cardData", import_auth.authenticateUser, import_cardDatas.default);
+(0, import_mongo.connect)("DTCluster");
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
