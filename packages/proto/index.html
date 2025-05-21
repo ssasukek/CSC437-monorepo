@@ -18,11 +18,12 @@
     <script type="module" src="/darkmode.js"></script>
 
     <script type="module">
-        import { define } from "@calpoly/mustang";
+        import { define, Auth } from "@calpoly/mustang";
         import { TradeCard } from "/src/trade-card.js";
         define({ "trade-card": TradeCard });
         import { TradeCards } from '/src/trade-cards.js';
         define({ 'trade-cards': TradeCards });
+        define({"mu-auth": Auth.Provider})
     </script>
 
 
@@ -33,6 +34,7 @@
 </head>
 
 <body>
+    <mu-auth provides="blazing:auth">
     <header>
         <input type="search" class="search-bar" placeholder="Search..." />
 
@@ -108,5 +110,6 @@
     <footer>
         <p>2025 Day Trades Index. All Rights Reserved.</p>
     </footer>
+    </mu-auth>
 </body>
 </html>
