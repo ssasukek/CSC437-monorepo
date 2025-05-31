@@ -23,6 +23,8 @@
       #dee3e8 50%,
       #b8d5fb 100%
     );
+    --background-image1: url("/styles/background/b2.png");
+
     /* dark mode */
     --gradient-hero:
     linear-gradient(
@@ -31,6 +33,7 @@
       #001f54 50%,
       #004e92 100%
     );
+    --background-image2: url("/styles/background/b1.png");
 
     /* Fonts Stuff */
     --font-body: 'Open Sans', sans-serif;
