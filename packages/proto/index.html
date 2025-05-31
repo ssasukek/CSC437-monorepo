@@ -72,39 +72,15 @@
                 <a href="daytrades.html">Read More</a>
             </section>
             
-            <trade-cards src="/data/trade-cards.json">
-                <trade-card
-                    id="'sec2"
-                    title="Order Types"
-                    href="orders.html"
-                    link-text="Read More">
-                    Quick summary of market, limit, and stop orders.
-                </trade-card>
+            <div class="cards">
+                <button class="scroll-btn left" onclick="scrollLeft()">&#8678;</button>
 
-                <trade-card
-                    id="sec3"
-                    title="Brokerage Accounts"
-                    href="brokerageAcc.html"
-                    link-text="Read More">
-                    Quick summary of account selection and setup.
-                </trade-card>
+                <section class="card-scroll" id="scroll-container">
+                    <trade-cards src="/data/trade-cards.json"></trade-cards>
+                </section>
 
-                <trade-card
-                    id="sec4"
-                    title="Know the Strategies"
-                    href="strategies.html"
-                    link-text="Read More">
-                    Learn the strategies and how to utilize them.
-                </trade-card>
-                
-                <trade-card
-                    id="sec5"
-                    title="Asset Types"
-                    href="assetTypes.html"
-                    link-text="Read More">
-                    Quick summary of asset selection.
-                </trade-card>
-            </trade-cards>
+                <button class="scroll-btn right" onclick="scrollRight()">&#8680;</button>
+            </div>
             
         </div>
     </main>
@@ -114,4 +90,35 @@
     </footer>
     </mu-auth>
 </body>
+
+<script>
+    function scrollRight() {
+    const container = document.getElementById("scroll-container");
+    const gap = 48;
+    if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+        container.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+        container.scrollBy({ left: 350, behavior: "smooth" });
+    }
+    }
+
+    function scrollLeft() {
+    const container = document.getElementById("scroll-container");
+    const gap = 48;
+    if (container.scrollLeft <= 10) {
+        container.scrollTo({ left: container.scrollWidth, behavior: "smooth" });
+    } else {
+        container.scrollBy({ left: -350, behavior: "smooth" });
+    }
+    }
+    
+    window.addEventListener("DOMContentLoaded", () => {
+        const scrollRightBtn = document.querySelector(".scroll-btn.right");
+        const scrollLeftBtn = document.querySelector(".scroll-btn.left");
+
+        scrollRightBtn.addEventListener("click", scrollRight);
+        scrollLeftBtn.addEventListener("click", scrollLeft);
+    });
+</script>
+
 </html>

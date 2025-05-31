@@ -2,6 +2,8 @@
     dark color, so like mix of black and blue blend
     cover page should be simple, aesthetic yet engaging*/
 
+
+
 /*color of background (header) & color of text in the header*/
 header {
   position: relative;
@@ -16,11 +18,12 @@ header {
 }
 
 body {
-  background: var(--gradient-page);
+  background: var(--background-image1);
   background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   color: var(--color-text);
-  font-family: var(--font-body);
+  font-family: var(--fon-body);
   font-size: var(--font-size-base);
 }
 
@@ -34,9 +37,11 @@ h4 {
 }
 
 main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  /* max-width: 960px; */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /*default color of text*/
@@ -53,28 +58,29 @@ link {
   grid-column: 4 / span 9;
 }
 
-/* .grid-cont {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--spacing-lg);
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-lg);
-} */
+.scroll-btn {
+  font-size: 5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  border-radius: 8px;
+  justify-content: center;
+  z-index: 2;
+  display: flex;
+}
+
+.scroll-btn:hover {
+  background-color: rgba(0, 0, 0, 0.2); ;
+}
 
 .hero {
-  grid-column: 1 / -1;
-  background: rgba(128, 128, 128, 0.25);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 60vh;
+  background: none;
   padding: 4rem 2rem;
   text-align: center;
-
-  position: relative;
+  min-height: 60vh;
 }
 
 /* in dark mode */
@@ -82,12 +88,20 @@ body.dark-mode {
   background: var(--gradient-hero);
 }
 
-.hero h1,
-.hero p,
+.hero h1 {
+  font-size: var(--font-size-xl);
+  color: var(--gradient-hero);;
+  margin-bottom: var(--spacing-md);
+}
+
+.hero p {
+  font-size: var(--font-size-lg);
+  color: var(--gradient-hero);
+}
+
 .hero a {
-  position: relative;
-  z-index: 1;
-  color: var(--color-text-inverted);
+  font-size: var(--font-size-sm);
+  color: var(--gradient-hero);
 }
 
 .dropdown {
@@ -145,24 +159,43 @@ body.dark-mode {
   color: rgba(255, 255, 255, 0.5);
 }
 
-svg.icon {
+.icon {
   display: inline;
-  height: 2em;
-  width: 2em;
+  height: 10rem;
+  width: 10rem;
   vertical-align: top;
   fill: currentColor;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
 }
 
-/* .cards {
+.card-scroll {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 10vw;
+  overflow-x: auto;
   display: flex;
-  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.card-scroll::-webkit-scrollbar {
+  display: none;
+}
+.card-scroll::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+
+
+.cards {
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: var(--spacing-md);
-  margin: 0 auto;
-  max-width: calc(240px * 3 + var(--spacing-md)*2);
-} */
+  padding: 2rem 0;
+}
 
 .dark-toggle {
   position: relative;

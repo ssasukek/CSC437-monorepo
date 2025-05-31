@@ -5,9 +5,9 @@ import { property } from 'lit/decorators.js';
 import reset from './styles/reset.css.ts';
 
 export class TradeCard extends LitElement {
-  @property() title = '';
-  @property() href = '';
-  @property({ attribute: 'link-text' }) linkText = '';
+  @property() title = "";
+  @property() href = "";
+  @property({ attribute: "link-text" }) linkText = "";
 
   static styles = [
     reset.styles,
@@ -16,31 +16,41 @@ export class TradeCard extends LitElement {
       :host {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        background: var(--color-background-page);
-        border: 1px solid var(--color-border);
-        border-radius: 999px;      
-        width: 440px;
-        height: 160px;
-        padding: var(--spacing-md);
-        box-sizing: border-box;
-        text-align: center;
+        justify-content: center;
+        background: #ccc;
+        border-radius: 12px;
+        border: 1px solid #ccc;
+        padding: 4.5rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        color: black;
+        min-width: 580px;
+        height: 220px;
+        text-align: left;
+        transition: transform 0.2s ease;
+
+        width: 90vw;
+        max-width: 1100px;
+        height: 400px;
+        flex: 0 0 80vw;
+        scroll-snap-align: center;
       }
 
       h1 {
+        font-size: 3rem;
         font-family: var(--font-display);
-        font-weight: 700;
         color: var(--color-link);
         margin-bottom: var(--spacing-sm);
       }
 
       p {
+        font-size: 1.5rem;
         color: var(--color-text);
         margin-bottom: var(--spacing-md);
       }
 
       a {
+        font-size: 1rem;
         color: var(--color-accent);
         text-decoration: none;
         font-weight: bold;
@@ -48,7 +58,7 @@ export class TradeCard extends LitElement {
       a:hover {
         text-decoration: underline;
       }
-    `
+    `,
   ];
 
   override render() {

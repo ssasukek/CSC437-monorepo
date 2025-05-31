@@ -49,22 +49,12 @@ export class TradeCards extends LitElement {
 
   static styles = css`
     :host {
-      display: flex;
-      margin: var(--spacing-lg) 0;
-      grid-column: 1 / -1;
+      display: contents;
     }
-    .cards {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--spacing-lg);
-      max-width: 300px;
-      margin: 0 auto;
   `;
 
   override render() {
     return html`
-      <div class="cards">
         ${this.items.map(item => html`
           <trade-card
             id=${item.id || ''}
@@ -75,7 +65,6 @@ export class TradeCards extends LitElement {
             ${item.description}
           </trade-card>
         `)}
-      </div>
     `;
   }
 }
