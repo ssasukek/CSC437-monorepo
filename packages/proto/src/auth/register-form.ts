@@ -77,38 +77,38 @@ export class RegisterFormElement extends LitElement {
     submitEvent.preventDefault();
 
     if (this.canSubmit) {
-      fetch(
-        this?.api || "",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(this.formData)
-        }
-      )
+    //   fetch(
+    //     this?.api || "",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json"
+    //       },
+    //       body: JSON.stringify(this.formData)
+        fetch("/auth/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.formData),
+    })
       .then((res) => {
-        if (res.status !== 200)
-          throw "Register failed";
+        if (res.status !== 200) throw "Register failed";
         else return res.json();
       })
       .then((json: object) => {
-          const { token } = json as { token: string };
-          const customEvent = new CustomEvent(
-          'auth:message', {
+        const { token } = json as { token: string };
+        const customEvent = new CustomEvent("auth:message", {
           bubbles: true,
           composed: true,
-          detail: [
-              'auth/signin',
-              { token, redirect: this.redirect }
-          ]
-          });
-          console.log("dispatching message", customEvent);
-          this.dispatchEvent(customEvent);
+          detail: ["auth/signin", { token, redirect: this.redirect }],
+        });
+        console.log("dispatching message", customEvent);
+        this.dispatchEvent(customEvent);
       })
       .catch((error: Error) => {
-          console.log(error);
-          this.error = error.toString();
+        console.log(error);
+        this.error = error.toString();
       });
     }
   }

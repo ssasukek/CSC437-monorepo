@@ -1,7 +1,14 @@
-import { Auth, define, History, Switch } from "@calpoly/mustang";
+// app/src/main.ts
+import { Auth, History, Switch, Store, define } from "@calpoly/mustang";
 import { html, LitElement } from "lit";
 import { HeaderElement } from "./components/blz-header.ts";
 import { HomeViewElement } from "./views/home-view.ts";
+// import { Msg } from "./messages";
+// import { Model, init } from "./model";
+// import update from "./update";
+// import { TourViewElement } from "./views/tour-view";
+// import { BlazingHeaderElement } from "./components/blz-header.ts";
+
 
 define({
   "mu-auth": Auth.Provider,
@@ -12,7 +19,14 @@ define({
     constructor() {
       super(routes, "blazing:history", "blazing:auth");
     }
-  },
+    },
+//   "mu-store": class AppStore
+//     extends Store.Provider<Model, Msg>{
+//     constructor() {
+//         super(update, init, "blazing:auth");
+//     }
+//     },
+//     "tour-view": TourViewElement
 });
 
 const routes = [

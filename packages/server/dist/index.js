@@ -33,16 +33,16 @@ const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
 app.use(import_express.default.json());
 app.use("/api/cardDatas", import_cardDatas.default);
-app.get("/hello", (req, res) => {
-  res.send("Hello, World");
-});
 app.use("/auth", import_auth.default);
 app.use("/api/cardData", import_auth.authenticateUser, import_cardDatas.default);
-(0, import_mongo.connect)("DTCluster");
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
 app.use("/app", (req, res) => {
   const indexHtml = import_path.default.resolve(staticDir, "index.html");
   import_promises.default.readFile(indexHtml, { encoding: "utf8" }).then((html) => res.send(html));
+});
+app.get("/hello", (req, res) => {
+  res.send("Hello, World");
+});
+(0, import_mongo.connect)("DTCluster");
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
