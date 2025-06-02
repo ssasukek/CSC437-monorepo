@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="/styles/reset.css"/>
 
 
-
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,12 +25,10 @@
 <body>
     <mu-history provides="blazing:history">
       <mu-auth provides="blazing:auth" redirect="/login.html">
-        <mu-store provides="blazing:model">
           <article class="page">
             <blz-header></blz-header>
             <mu-switch></mu-switch>
           </article>
-        </mu-store>
       </mu-auth>
     </mu-history>
 </body>

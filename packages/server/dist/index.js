@@ -28,7 +28,8 @@ var import_auth = __toESM(require("./routes/auth"));
 var import_promises = __toESM(require("node:fs/promises"));
 var import_path = __toESM(require("path"));
 const app = (0, import_express.default)();
-const port = process.env.PORT || 3e3;
+const host = "0.0.0.0";
+const port = Number(process.env.PORT) || 3e3;
 const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
 app.use(import_express.default.json());
@@ -41,6 +42,9 @@ app.use("/app", (req, res) => {
 });
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
+});
+app.listen(port, host, () => {
+  console.log(`Server running at http://${host}:${port}`);
 });
 (0, import_mongo.connect)("DTCluster");
 app.listen(port, () => {
