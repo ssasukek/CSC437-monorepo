@@ -37,7 +37,7 @@ var import_express = __toESM(require("express"));
 var import_jsonwebtoken = __toESM(require("jsonwebtoken"));
 var import_credential_svc = __toESM(require("../services/credential-svc"));
 import_dotenv.default.config();
-const TOKEN_SECRET = process.env.TOKEN_SECRET || "sake";
+const TOKEN_SECRET = process.env.TOKEN_SECRET || "NOT_A_SECRET";
 const router = import_express.default.Router();
 function generateAccessToken(username) {
   return new Promise((resolve, reject) => {
@@ -45,30 +45,44 @@ function generateAccessToken(username) {
       { username },
       TOKEN_SECRET,
       { expiresIn: "1d" },
-      (err, token) => err ? reject(err) : resolve(token)
+      (error, token) => {
+        if (error) reject(error);
+        else resolve(token);
+      }
     );
   });
 }
 router.post("/register", (req, res) => {
   const { username, password } = req.body;
   if (typeof username !== "string" || typeof password !== "string") {
-    return res.status(400).send("Bad request");
+    res.status(400).send("Bad request: Invalid input data.");
+  } else {
+    import_credential_svc.default.create(username, password).then((creds) => generateAccessToken(creds.username)).then((token) => {
+      res.status(201).send({ token });
+    }).catch((err) => {
+      res.status(409).send({ error: err.message });
+    });
   }
-  import_credential_svc.default.create(username, password).then(() => generateAccessToken(username)).then((token) => res.status(201).json({ token })).catch((err) => res.status(409).json({ error: err.message }));
 });
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
-  if (!username || !password) return res.status(400).send("Bad request");
-  import_credential_svc.default.verify(username, password).then((user) => generateAccessToken(user)).then((token) => res.json({ token })).catch(() => res.status(401).send("Unauthorized"));
+  if (!username || !password) {
+    res.status(400).send("Bad request: Invalid input data.");
+  } else {
+    import_credential_svc.default.verify(username, password).then((goodUser) => generateAccessToken(goodUser)).then((token) => res.status(200).send({ token })).catch((error) => res.status(401).send("Unauthorized"));
+  }
 });
 function authenticateUser(req, res, next) {
-  const authHeader = req.headers["authorization"] || "";
-  const token = authHeader.split(" ")[1];
-  if (!token) return res.status(401).end();
-  import_jsonwebtoken.default.verify(token, TOKEN_SECRET, (err) => {
-    if (err) return res.status(403).end();
-    next();
-  });
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (!token) {
+    res.status(401).end();
+  } else {
+    import_jsonwebtoken.default.verify(token, TOKEN_SECRET, (error, decoded) => {
+      if (decoded) next();
+      else res.status(403).end();
+    });
+  }
 }
 var auth_default = router;
 // Annotate the CommonJS export names for ESM import in node:

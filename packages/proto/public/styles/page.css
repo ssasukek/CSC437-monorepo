@@ -2,8 +2,6 @@
     dark color, so like mix of black and blue blend
     cover page should be simple, aesthetic yet engaging*/
 
-
-
 /*color of background (header) & color of text in the header*/
 header {
   position: relative;
@@ -85,7 +83,10 @@ link {
 
 /* in dark mode */
 body.dark-mode {
-  background: var(--gradient-hero);
+  background: var(--background-image2);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .hero h1 {
@@ -243,4 +244,15 @@ body.dark-mode {
 }
 .dark-checkbox:checked + .toggle-switch::after {
   left: calc(100% - 2px - 20px);
+}
+
+.login-btn {
+  margin-right: 1rem;
+  padding: 0.5rem 0.5rem;
+  background-color: transparent;
+  color: var(--color-link);
+  font-weight: bold;
+  text-decoration: none;
+  border: 1px solid var(--color-link);
+  border-radius: 1px;
 }

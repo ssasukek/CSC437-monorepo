@@ -8,7 +8,8 @@
     "start": "npm run build && npm run start:node",
     "start:node": "node dist/index.js",
     "start:proto": "cross-env STATIC=../proto/public npm run start",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "start:app": "cross-env STATIC=../app/public npm run start"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "cross-env": "^7.0.3",
     "esbuild": "^0.25.4",
     "esbuild-node-tsc": "^2.0.5",
+    "etsc": "^0.1.0",
     "nodemon": "^3.1.10",
     "typescript": "^5.8.3"
   },

@@ -25,6 +25,8 @@ var import_express = __toESM(require("express"));
 var import_mongo = require("./services/mongo");
 var import_cardDatas = __toESM(require("./routes/cardDatas"));
 var import_auth = __toESM(require("./routes/auth"));
+var import_promises = __toESM(require("node:fs/promises"));
+var import_path = __toESM(require("path"));
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
@@ -39,4 +41,8 @@ app.use("/api/cardData", import_auth.authenticateUser, import_cardDatas.default)
 (0, import_mongo.connect)("DTCluster");
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
+});
+app.use("/app", (req, res) => {
+  const indexHtml = import_path.default.resolve(staticDir, "index.html");
+  import_promises.default.readFile(indexHtml, { encoding: "utf8" }).then((html) => res.send(html));
 });
