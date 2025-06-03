@@ -3,11 +3,10 @@ import { Auth, History, Switch, Store, define } from "@calpoly/mustang";
 import { html, LitElement } from "lit";
 import { HeaderElement } from "./components/blz-header.ts";
 import { HomeViewElement } from "./views/home-view.ts";
-// import { Msg } from "./messages";
-// import { Model, init } from "./model";
-// import update from "./update";
-// import { TourViewElement } from "./views/tour-view";
-// import { BlazingHeaderElement } from "./components/blz-header.ts";
+import { Msg } from "./messages.ts";
+import { Model, init } from "./model.ts";
+import update from "./update.ts";
+import { ProfileViewElement } from "./views/profile-view.ts";
 
 
 define({
@@ -19,21 +18,20 @@ define({
     constructor() {
       super(routes, "blazing:history", "blazing:auth");
     }
-    },
-//   "mu-store": class AppStore
-//     extends Store.Provider<Model, Msg>{
-//     constructor() {
-//         super(update, init, "blazing:auth");
-//     }
-//     },
-//     "tour-view": TourViewElement
+  },
+  "mu-store": class AppStore extends Store.Provider<Model, Msg> {
+    constructor() {
+      super(update, init, "blazing:auth");
+    }
+  },
+  "profile-view": ProfileViewElement,
 });
 
 const routes = [
   {
-    path: "/app/tour/:id",
+    path: "/app/profile/:id",
     view: (params: Switch.Params) => html`
-      <tour-view tour-id=${params.id}></tour-view>
+      <profile-view user-id=${params.id}></profile-view>
     `,
   },
   {

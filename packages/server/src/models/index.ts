@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
-import { connect } from "./services/mongo";
-import cardDataRouter from "./routes/cardDatas";
-import auth , { authenticateUser } from "./routes/auth";
+import { connect } from "../services/mongo";
+import cardDataRouter from "../routes/cardDatas";
+import auth , { authenticateUser } from "../routes/auth";
 import fs from "node:fs/promises";
 import path from "path";
+export { CardData } from "./cardData";
 
 const app = express();
 const port = process.env.PORT || 3000;
