@@ -1,0 +1,30 @@
+[
+  {
+    "id": "sec2",
+    "title": "Order Types",
+    "href": "orders.html",
+    "linkText": "Read More",
+    "description": "Quick summary of market, limit, and stop orders."
+  },
+  {
+    "id": "sec3",
+    "title": "Brokerage Accounts",
+    "href": "brokerageAcc.html",
+    "linkText": "Read More",
+    "description": "Quick summary of account selection and setup."
+  },
+  {
+    "id": "sec4",
+    "title": "Know the Strategies",
+    "href": "strategies.html",
+    "linkText": "Read More",
+    "description": "Learn the strategies and how to utilize them."
+  },
+  {
+    "id": "sec5",
+    "title": "Asset Types",
+    "href": "assetTypes.html",
+    "linkText": "Read More",
+    "description": "Quick summary of asset selection."
+  }
+]

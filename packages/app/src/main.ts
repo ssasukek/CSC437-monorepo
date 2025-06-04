@@ -34,6 +34,24 @@ const routes = [
     view: (params: Switch.Params) =>
       html`<card-edit-view card-id=${params.id}></card-edit-view>`,
   },
+  {
+    path: "/app/daytrades",
+    view: () => html`<daytrades-view></daytrades-view>`,
+  },
+  { path: "/app/orders", view: () => html`<orders-view></orders-view>` },
+  {
+    path: "/app/assetTypes",
+    view: () => html`<assetTypes-view></asseTypes-view>`,
+  },
+  {
+    path: "/app/strategies",
+    view: () => html`<strategies-view></strategies-view>`,
+  },
+  {
+    path: "/app/brokerage",
+    view: () => html`<brokerageAcc-view></brokerageAcc-view>`,
+  },
+  { path: "/app/margins", view: () => html`<margins-view></margins-view>` },
 ];
 
 define({
@@ -53,4 +71,11 @@ define({
   },
   "profile-view": ProfileViewElement,
   "card-edit-view": CardEditView,
+
+  "daytrades-view": DayTradesViewElement,
+  "orders-view": OrdersViewElement,
+  "assetTypes-view": AssetTypesViewElement,
+  "strategies-view": StrategiesViewElement,
+  "brokerageAcc-view": BrokerageViewElement,
+  "margins-view": MarginsViewElement,
 });
