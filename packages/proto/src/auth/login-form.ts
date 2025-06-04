@@ -17,7 +17,7 @@ export class LoginFormElement extends LitElement {
   api?: string;
 
   @property()
-  redirect: string = "/";
+  redirect: string = "/index";
 
   @state()
   error?: string;
