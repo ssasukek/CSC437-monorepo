@@ -24,6 +24,7 @@
       #b8d5fb 100%
     );
     --background-image1: url("/styles/background/b2.png");
+    --card-bg: #e3dada;
 
     /* dark mode */
     --gradient-hero:
@@ -34,6 +35,7 @@
       #004e92 100%
     );
     --background-image2: url("/styles/background/b1.png");
+    --card-bg2: #ccc;
 
     /* Fonts Stuff */
     --font-body: 'Open Sans', sans-serif;
@@ -60,4 +62,6 @@ body.dark-mode {
   --color-background-card: #111;
   --color-text: #eee;
   --color-link: var(--color-accent-inverted);
+
+  --card-bg:#494444;
 }

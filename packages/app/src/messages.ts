@@ -1,5 +1,7 @@
 import { CardData } from "server/models";
 
 export type Msg =
-  | ["profile/save", { userid: string; profile: CardData }]
-  | ["profile/select", { userid: string }]
+  | ["card/save", { id: string; card: CardData; 
+    onSuccess?: () => void; 
+    onFailure?: (err: Error) => void;}]
+  | ["card/select", { id: string }];

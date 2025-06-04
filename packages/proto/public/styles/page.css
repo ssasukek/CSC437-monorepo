@@ -179,12 +179,6 @@ body.dark-mode {
 .card-scroll::-webkit-scrollbar {
   display: none;
 }
-.card-scroll::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 4px;
-}
-
-
 
 .cards {
   position: relative;

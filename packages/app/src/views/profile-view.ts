@@ -1,3 +1,5 @@
+// Read-only View
+
 import { View } from "@calpoly/mustang";
 import { html } from "lit";
 import { property } from "lit/decorators.js";
@@ -15,16 +17,16 @@ export class ProfileViewElement extends View<Model, Msg> {
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     super.attributeChangedCallback(name, oldValue, newValue);
     if (name === "user-id" && oldValue !== newValue && newValue) {
-      this.dispatchMessage(["profile/select", { userid: newValue }]);
+      this.dispatchMessage(["card/select", { id: newValue }]);
     }
   }
 
   render() {
-    if (!this.model.profile) {
+    if (!this.model.card) {
       return html`<p>Loading...</p>`;
     }
 
-    const { title, description } = this.model.profile;
+    const { title, description } = this.model.card;
     return html`
       <h1>${title}</h1>
       <p>${description}</p>

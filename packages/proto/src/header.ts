@@ -35,7 +35,7 @@ export class HeaderElement extends LitElement {
   }
   render() {
     return html`
-      <slot name="actuator">Hello, ${this.userid||"user"}</slot>
+      <slot name="actuator">Hello, ${this.userid||"traveler"}</slot>
       ${this.loggedIn ? this.renderSignOutButton() : this.renderSignInButton()}
     `;
   }

@@ -18,9 +18,8 @@ export class TradeCard extends LitElement {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: #ccc;
+        background: var(--card-bg);
         border-radius: 12px;
-        border: 1px solid #ccc;
         padding: 4.5rem;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         color: black;
@@ -35,7 +34,7 @@ export class TradeCard extends LitElement {
         flex: 0 0 80vw;
         scroll-snap-align: center;
       }
-
+        
       h1 {
         font-size: 3rem;
         font-family: var(--font-display);

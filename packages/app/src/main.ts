@@ -7,6 +7,7 @@ import { Msg } from "./messages.ts";
 import { Model, init } from "./model.ts";
 import update from "./update.ts";
 import { ProfileViewElement } from "./views/profile-view.ts";
+import { CardEditView } from "./views/card-view.ts";
 
 
 define({
@@ -25,6 +26,7 @@ define({
     }
   },
   "profile-view": ProfileViewElement,
+  "card-edit-view": CardEditView,
 });
 
 const routes = [
@@ -41,5 +43,10 @@ const routes = [
   {
     path: "/",
     redirect: "/app",
+  },
+  {
+    path: "/app/card/:id/edit",
+    view: (params: Switch.Params) =>
+      html`<card-edit-view card-id=${params.id}></card-edit-view>`,
   },
 ];
