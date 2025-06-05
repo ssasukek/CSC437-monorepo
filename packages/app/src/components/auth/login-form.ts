@@ -62,7 +62,7 @@ export class LoginFormElement extends LitElement {
     const value = target?.value;
     const prevData = this.formData;
   
-    switch (name) {
+    switch (name) { 
       case "username":
         this.formData = { ...prevData, username: value };
         break;
