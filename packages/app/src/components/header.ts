@@ -76,8 +76,9 @@ export class HeaderElement extends LitElement {
               <div class="user-dropdown">
                 <span class="user-name">${username}</span>
                 <div class="dropdown-content">
-                  <a href="/app/profile/${username}" class="dropdown-item"
-                    >Account Info</a>
+                  <a href="/app/profile/${username}" class="dropdown-item">
+                  Account Info
+                  </a>
                   <button class="dropdown-item" @click=${this.signOut}>
                     Sign Out
                   </button>

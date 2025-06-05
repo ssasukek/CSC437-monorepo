@@ -135,7 +135,7 @@ export default css`
     display: block;
     padding: 0.5rem 1rem;
     text-decoration: none;
-    color: var(--color-text);
+    // color: var(--color-text);
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
