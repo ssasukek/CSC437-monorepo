@@ -29,31 +29,7 @@
       <mu-auth provides="blazing:auth" redirect="/">
         <mu-store provides="blazing:model">
           <article class="page">
-
-            <header>
-              <input type="search" class="search-bar" placeholder="Search..." />
-      
-              <label class="dark-toggle">
-                  <span class="icon-sun">☀️</span>
-                  <input type="checkbox" class="dark-checkbox" />
-                  <span class="toggle-switch"></span>
-                  <span class="icon-moon">🌙</span>
-              </label>
-      
-              <a href="/app/login" class="login-btn">Login</a>
-      
-              <div class="dropdown">
-                  <button class="dropbtn" aria-label="Menu">☰</button>
-                  <div class="dropdown-content">
-                      <a href="/app">Home</a>
-                      <a href="/app/daytrades">Day Trades</a>
-                      <a href="/app/orders">Orders</a>
-                      <a href="/app/brokerageAcc">Brokerage Account</a>
-                      <a href="/app/strategies">Strategies</a>
-                      <a href="/app/assetTypes">Asset Type</a>             
-                  </div>
-              </div>
-          </header>
+          <t-header></t-header>
             <mu-switch></mu-switch>
           </article>
         </mu-store>

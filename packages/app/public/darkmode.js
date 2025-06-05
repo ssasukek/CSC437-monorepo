@@ -17,5 +17,13 @@ if (!checkbox) {
 }
 
 document.body.addEventListener('darkmode:toggle', evt => {
-  document.body.classList.toggle('dark-mode', evt.detail.checked);
+  const checked = evt.detail.checked;
+  console.log("dark mode:", checked);
+  document.body.classList.toggle("dark-mode", checked);
+  localStorage.setItem("mode", checked ? "dark" : "light");
 });
+
+const stored = localStorage.getItem("mode");
+if (stored === "dark") {
+  document.body.classList.add("dark-mode");
+}

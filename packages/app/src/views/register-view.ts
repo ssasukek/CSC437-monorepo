@@ -14,7 +14,7 @@ export class RegisterView extends View<Model, Msg> {
           <h2>Create Account</h2>
           <register-form api="/auth/register" label="Register">
             <label>
-              <span>Email</span>
+              <span>Username</span>
               <input type="user" name="username" autocomplete="off" required />
             </label>
             <label>

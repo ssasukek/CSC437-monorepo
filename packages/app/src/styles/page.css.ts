@@ -254,4 +254,31 @@ export default css`
     border: 1px solid var(--color-link);
     border-radius: 1px;
   }
+
+  .user-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 1rem;
+    font-weight: bold;
+    font-family: var(--font-body, sans-serif);
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .user-dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: black;
+    text-decoration: none;
+    text-align: left;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+  }
 `;
