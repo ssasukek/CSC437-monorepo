@@ -16,18 +16,17 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var cardData_svc_exports = {};
-__export(cardData_svc_exports, {
-  default: () => cardData_svc_default
+var CardData_svc_exports = {};
+__export(CardData_svc_exports, {
+  default: () => CardData_svc_default
 });
-module.exports = __toCommonJS(cardData_svc_exports);
+module.exports = __toCommonJS(CardData_svc_exports);
 var import_mongoose = require("mongoose");
 const CardDataSchema = new import_mongoose.Schema({
   id: {
     type: String,
     required: true,
-    trim: true,
-    unique: true
+    trim: true
   },
   title: {
     type: String,
@@ -55,16 +54,6 @@ function index() {
   return CardDataModel.find().exec();
 }
 function get(id) {
-  return CardDataModel.findOne({ id }).exec();
+  return CardDataModel.findById(id).exec();
 }
-function create(json) {
-  return new CardDataModel(json).save();
-}
-function update(id, json) {
-  return CardDataModel.findOneAndUpdate({ id }, json, { new: true }).exec();
-}
-function remove(id) {
-  return CardDataModel.findOneAndDelete({ id }).exec().then(() => {
-  });
-}
-var cardData_svc_default = { index, get, create, update, remove };
+var CardData_svc_default = { index, get };
