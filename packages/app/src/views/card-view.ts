@@ -53,7 +53,7 @@ render() {
         card: event.detail,
         onSuccess: () =>
           History.dispatch(this, "history/navigate", {
-            href: `/app/traveler/${this.id}`
+            href: `/app/card/${this.id}`
           }),
         onFailure: (error: Error) =>
           console.log("ERROR:", error)

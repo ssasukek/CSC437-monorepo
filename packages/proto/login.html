@@ -28,7 +28,7 @@
     define({
       "mu-auth": Auth.Provider,
       "login-form": LoginFormElement,
-      "blz-header": HeaderElement
+      "header": HeaderElement
     });
   </script>
 
@@ -66,7 +66,7 @@
   <main class="login-cont">
     <section class="login-card">
       <h2>User Login</h2>
-      <login-form api="/auth/login">
+      <login-form api="/auth/login" redirect="/app">
         <label>
           <span>Email</span>
           <input type ="user" name="username" autocomplete="off" required/>

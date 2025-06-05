@@ -1,0 +1,257 @@
+import { css } from "lit";
+
+export default css`
+  /*light background, not solid type of color, similar to a gradient type
+    dark color, so like mix of black and blue blend
+    cover page should be simple, aesthetic yet engaging*/
+
+  /*color of background (header) & color of text in the header*/
+  header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+  }
+
+  body {
+    background: var(--background-image1);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--color-text);
+    font-family: var(--fon-body);
+    font-size: var(--font-size-base);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-link);
+  }
+
+  main {
+    /* max-width: 960px; */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /*default color of text*/
+  text {
+    color: color-mix(in hsl shorter hue, color percentage, color percentage);
+  }
+
+  /*one or more accent colors, to use for links and/or headings*/
+  link {
+    color: aliceblue;
+  }
+
+  .main {
+    grid-column: 4 / span 9;
+  }
+
+  .scroll-btn {
+    font-size: 5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    border-radius: 8px;
+    justify-content: center;
+    z-index: 2;
+    display: flex;
+  }
+
+  .scroll-btn:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .hero {
+    background: none;
+    padding: 4rem 2rem;
+    text-align: center;
+    min-height: 60vh;
+  }
+
+  /* in dark mode */
+  body.dark-mode {
+    background: var(--background-image2);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .hero h1 {
+    font-size: var(--font-size-xl);
+    color: var(--gradient-hero);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .hero p {
+    font-size: var(--font-size-lg);
+    color: var(--gradient-hero);
+  }
+
+  .hero a {
+    font-size: var(--font-size-sm);
+    color: var(--gradient-hero);
+  }
+
+  .dropdown {
+    position: relative;
+  }
+
+  .dropbtn {
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: var(--color-text-inverted);
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    min-width: 150px;
+    box-shadow: 0 3px 6px grey;
+  }
+
+  .dropdown-content a {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .dropdown-content a:hover {
+    background-color: var(--color-link-hover);
+    color: var(--color-link);
+  }
+
+  .dropdown:hover .dropdown-content,
+  .dropdown-content:hover {
+    display: block;
+  }
+
+  .search-bar {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    padding: 0.25rem 0.5rem;
+    width: 300px;
+    color: white;
+    font-size: 1rem;
+  }
+
+  .search-bar::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .icon {
+    display: inline;
+    height: 10rem;
+    width: 10rem;
+    vertical-align: top;
+    fill: currentColor;
+  }
+
+  .card-scroll {
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 10vw;
+    overflow-x: auto;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .card-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cards {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+
+  .dark-toggle {
+    position: relative;
+    margin-left: auto;
+    margin-right: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+  }
+
+  .dark-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 24px;
+    background: #888;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .toggle-switch:hover {
+    background: #999;
+  }
+
+  .toggle-switch::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    transition: left 0.25s;
+  }
+
+  .dark-checkbox:checked + .toggle-switch {
+    background: #444;
+  }
+  .dark-checkbox:checked + .toggle-switch::after {
+    left: calc(100% - 2px - 20px);
+  }
+
+  .login-btn {
+    margin-right: 1rem;
+    padding: 0.5rem 0.5rem;
+    background-color: transparent;
+    color: var(--color-link);
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid var(--color-link);
+    border-radius: 1px;
+  }
+`;

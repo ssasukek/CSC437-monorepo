@@ -1,13 +1,20 @@
 // app/src/main.ts
 import { Auth, History, Switch, Store, define } from "@calpoly/mustang";
 import { html } from "lit";
-import { HeaderElement } from "./components/blz-header";
-import { HomeViewElement } from "./views/home-view";
 import { Msg } from "./messages";
 import { Model, init } from "./model";
 import update from "./update";
+
 import { ProfileViewElement } from "./views/profile-view";
 import { CardEditView } from "./views/card-view";
+import { IndexView } from "./views/index-view.ts";
+import { HeaderElement } from "./components/header.ts";
+import { TradeCard } from "./components/trade-card";
+import { TradeCards } from "./components/trade-cards.ts";
+import { LoginFormElement } from "./components/auth/login-form.ts";
+import { LoginView } from "./views/login-view.ts";
+import { RegisterFormElement } from "./components/auth/register-form.ts";
+import { RegisterView } from "./views/register-view.ts";
 
 const routes = [
   {
@@ -21,10 +28,7 @@ const routes = [
     view: (params: Switch.Params) =>
       html`<card-edit-view user-id=${params.id}></card-edit-view>`,
   },
-  {
-    path: "/app",
-    view: () => html` <home-view></home-view> `,
-  },
+
   {
     path: "/",
     redirect: "/app",
@@ -52,13 +56,24 @@ const routes = [
     view: () => html`<brokerageAcc-view></brokerageAcc-view>`,
   },
   { path: "/app/margins", view: () => html`<margins-view></margins-view>` },
+  {
+    path: "/app",
+    view: () => html`<index-view></index-view>`,
+  },
+  {
+    path: "/app/login",
+    view: () => html`<login-view></login-view>` ,
+  },
+  {
+    path: "/app/register",
+    view: () => html`<register-view></register-view>`,
+  },
 ];
 
 define({
   "mu-auth": Auth.Provider,
   "mu-history": History.Provider,
-  "blz-header": HeaderElement,
-  "home-view": HomeViewElement,
+  "t-header": HeaderElement,
   "mu-switch": class AppSwitch extends Switch.Element {
     constructor() {
       super(routes, "blazing:history", "blazing:auth");
@@ -71,11 +86,11 @@ define({
   },
   "profile-view": ProfileViewElement,
   "card-edit-view": CardEditView,
-
-  "daytrades-view": DayTradesViewElement,
-  "orders-view": OrdersViewElement,
-  "assetTypes-view": AssetTypesViewElement,
-  "strategies-view": StrategiesViewElement,
-  "brokerageAcc-view": BrokerageViewElement,
-  "margins-view": MarginsViewElement,
+  "index-view": IndexView,
+  "trade-cards": TradeCards,
+  "trade-card": TradeCard,
+  "login-form": LoginFormElement,
+  "login-view": LoginView,
+  "register-view": RegisterView,
+  "register-form": RegisterFormElement,
 });

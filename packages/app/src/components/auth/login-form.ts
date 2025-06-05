@@ -1,7 +1,6 @@
 import { html, css, LitElement } from "lit";
 import { property, state } from "lit/decorators.js";
-import reset from "../styles/reset.css.ts";
-// import headings from "../styles/headings.css.ts";
+import reset from "../../styles/reset.css.ts";
 
 interface LoginFormData {
   username?: string;

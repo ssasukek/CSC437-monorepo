@@ -2,28 +2,28 @@
   {
     "id": "sec2",
     "title": "Order Types",
-    "href": "orders.html",
+    "href": "/app/orders",
     "linkText": "Read More",
     "description": "Quick summary of market, limit, and stop orders."
   },
   {
     "id": "sec3",
     "title": "Brokerage Accounts",
-    "href": "brokerageAcc.html",
+    "href": "/app/brokerageAcc",
     "linkText": "Read More",
     "description": "Quick summary of account selection and setup."
   },
   {
     "id": "sec4",
     "title": "Know the Strategies",
-    "href": "strategies.html",
+    "href": "/app/strategies",
     "linkText": "Read More",
     "description": "Learn the strategies and how to utilize them."
   },
   {
     "id": "sec5",
     "title": "Asset Types",
-    "href": "assetTypes.html",
+    "href": "/app/assetTypes",
     "linkText": "Read More",
     "description": "Quick summary of asset selection."
   }

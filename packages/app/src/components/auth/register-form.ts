@@ -1,17 +1,16 @@
 import { html, css, LitElement } from "lit";
 import { property, state } from "lit/decorators.js";
-import reset from "../styles/reset.css.ts";
-// import headings from "../styles/headings.css.ts";
+import reset from "../../styles/reset.css.ts";
 
-interface LoginFormData {
+interface RegisterFormData {
   username?: string;
   password?: string;
 }
 
-export class LoginFormElement extends LitElement {
+export class RegisterFormElement extends LitElement {
 
   @state()
-  formData: LoginFormData = {};
+  formData: RegisterFormData = {};
 
   @property()
   api?: string;
@@ -38,7 +37,7 @@ export class LoginFormElement extends LitElement {
           <button
             ?disabled=${!this.canSubmit}
             type="submit">
-            Login
+            Register
           </button>
         </slot>
         <p class="error">${this.error}</p>
@@ -77,38 +76,38 @@ export class LoginFormElement extends LitElement {
     submitEvent.preventDefault();
 
     if (this.canSubmit) {
-      fetch(
-        this?.api || "",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(this.formData)
-        }
-      )
+    //   fetch(
+    //     this?.api || "",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json"
+    //       },
+    //       body: JSON.stringify(this.formData)
+        fetch("/auth/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.formData),
+    })
       .then((res) => {
-        if (res.status !== 200)
-          throw "Login failed";
+        if (res.status !== 200) throw "Register failed";
         else return res.json();
       })
       .then((json: object) => {
-          const { token } = json as { token: string };
-          const customEvent = new CustomEvent(
-          'auth:message', {
+        const { token } = json as { token: string };
+        const customEvent = new CustomEvent("auth:message", {
           bubbles: true,
           composed: true,
-          detail: [
-              'auth/signin',
-              { token, redirect: this.redirect }
-          ]
-          });
-          console.log("dispatching message", customEvent);
-          this.dispatchEvent(customEvent);
+          detail: ["auth/signin", { token, redirect: this.redirect }],
+        });
+        console.log("dispatching message", customEvent);
+        this.dispatchEvent(customEvent);
       })
       .catch((error: Error) => {
-          console.log(error);
-          this.error = error.toString();
+        console.log(error);
+        this.error = error.toString();
       });
     }
   }

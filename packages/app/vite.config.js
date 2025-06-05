@@ -11,5 +11,6 @@ export default {
       "/login": "http://localhost:3000",
       "/register": "http://localhost:3000",
     },
+    historyApiFallback: true,
   },
 };

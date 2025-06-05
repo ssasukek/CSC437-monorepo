@@ -15,19 +15,45 @@
     <link rel="stylesheet" href="/styles/reset.css"/>
 
     <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/darkmode.js"></script>
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-</head>
+
+  </head>
 
 <body>
     <mu-history provides="blazing:history">
-      <mu-auth provides="blazing:auth" redirect="/login.html">
+      <mu-auth provides="blazing:auth" redirect="/">
         <mu-store provides="blazing:model">
           <article class="page">
-            <blz-header></blz-header>
+
+            <header>
+              <input type="search" class="search-bar" placeholder="Search..." />
+      
+              <label class="dark-toggle">
+                  <span class="icon-sun">☀️</span>
+                  <input type="checkbox" class="dark-checkbox" />
+                  <span class="toggle-switch"></span>
+                  <span class="icon-moon">🌙</span>
+              </label>
+      
+              <a href="/app/login" class="login-btn">Login</a>
+      
+              <div class="dropdown">
+                  <button class="dropbtn" aria-label="Menu">☰</button>
+                  <div class="dropdown-content">
+                      <a href="/app">Home</a>
+                      <a href="/app/daytrades">Day Trades</a>
+                      <a href="/app/orders">Orders</a>
+                      <a href="/app/brokerageAcc">Brokerage Account</a>
+                      <a href="/app/strategies">Strategies</a>
+                      <a href="/app/assetTypes">Asset Type</a>             
+                  </div>
+              </div>
+          </header>
             <mu-switch></mu-switch>
           </article>
         </mu-store>

@@ -29,6 +29,7 @@ app.use("/", (req: Request, res: Response) => {
 });
 
 connect("DTCluster");
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
