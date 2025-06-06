@@ -14,7 +14,7 @@ export class LoginView extends View<Model, Msg> {
               <h2>User Login</h2>
               <login-form api="/auth/login" redirect="/app">
                 <label>
-                  <span>Email</span>
+                  <span>Username</span>
                   <input
                     type="user"
                     name="username"

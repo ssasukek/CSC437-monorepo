@@ -29,22 +29,17 @@ const CardDataSchema = new import_mongoose.Schema({
     trim: true,
     unique: true
   },
-  title: {
+  name: {
     type: String,
     required: true,
     trim: true
   },
-  href: {
+  bio: {
     type: String,
     required: true,
     trim: true
   },
-  linkText: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  description: {
+  tradingStyle: {
     type: String,
     required: true,
     trim: true
@@ -61,6 +56,7 @@ function create(json) {
   return new CardDataModel(json).save();
 }
 function update(id, json) {
+  console.log(`Updating card for ${id}`, json);
   return CardDataModel.findOneAndUpdate({ id }, json, { new: true }).exec();
 }
 function remove(id) {

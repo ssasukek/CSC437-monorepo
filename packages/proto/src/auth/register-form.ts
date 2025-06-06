@@ -9,7 +9,6 @@ interface RegisterFormData {
 }
 
 export class RegisterFormElement extends LitElement {
-
   @state()
   formData: RegisterFormData = {};
 
@@ -23,8 +22,9 @@ export class RegisterFormElement extends LitElement {
   error?: string;
 
   get canSubmit(): boolean {
-    return Boolean(this.api && this.formData.username &&
-      this.formData.password);
+    return Boolean(
+      this.api && this.formData.username && this.formData.password
+    );
   }
 
   override render() {
@@ -35,11 +35,7 @@ export class RegisterFormElement extends LitElement {
       >
         <slot></slot>
         <slot name="button">
-          <button
-            ?disabled=${!this.canSubmit}
-            type="submit">
-            Register
-          </button>
+          <button ?disabled=${!this.canSubmit} type="submit">Register</button>
         </slot>
         <p class="error">${this.error}</p>
       </form>
@@ -55,14 +51,15 @@ export class RegisterFormElement extends LitElement {
         border: 1px solid var(--color-error);
         padding: var(--size-spacing-medium);
       }
-  `];
+    `,
+  ];
 
   handleChange(event: InputEvent) {
     const target = event.target as HTMLInputElement;
     const name = target?.name;
     const value = target?.value;
     const prevData = this.formData;
-  
+
     switch (name) {
       case "username":
         this.formData = { ...prevData, username: value };
@@ -77,39 +74,31 @@ export class RegisterFormElement extends LitElement {
     submitEvent.preventDefault();
 
     if (this.canSubmit) {
-    //   fetch(
-    //     this?.api || "",
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json"
-    //       },
-    //       body: JSON.stringify(this.formData)
-        fetch("/auth/register", {
+      fetch("/auth/register", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(this.formData),
-    })
-      .then((res) => {
-        if (res.status !== 200) throw "Register failed";
-        else return res.json();
       })
-      .then((json: object) => {
-        const { token } = json as { token: string };
-        const customEvent = new CustomEvent("auth:message", {
-          bubbles: true,
-          composed: true,
-          detail: ["auth/signin", { token, redirect: this.redirect }],
+        .then((res) => {
+          if (!res.ok) throw "Register failed";
+          return res.json();
+        })
+        .then((json: object) => {
+          const { token } = json as { token: string };
+          const customEvent = new CustomEvent("auth:message", {
+            bubbles: true,
+            composed: true,
+            detail: ["auth/signin", { token, redirect: this.redirect }],
+          });
+          console.log("dispatching message", customEvent);
+          this.dispatchEvent(customEvent);
+        })
+        .catch((error: Error) => {
+          console.log(error);
+          this.error = error.toString();
         });
-        console.log("dispatching message", customEvent);
-        this.dispatchEvent(customEvent);
-      })
-      .catch((error: Error) => {
-        console.log(error);
-        this.error = error.toString();
-      });
     }
   }
 }

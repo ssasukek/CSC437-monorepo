@@ -43,9 +43,8 @@ const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
 app.use(import_express.default.json());
-app.use("/api/cardDatas", import_cardDatas.default);
 app.use("/auth", import_auth.default);
-app.use("/api/cardData", import_auth.authenticateUser, import_cardDatas.default);
+app.use("/api/cardDatas", import_auth.authenticateUser, import_cardDatas.default);
 app.use("/app/", (req, res) => {
   const indexHtml = import_path.default.resolve(staticDir, "index.html");
   import_promises.default.readFile(indexHtml, { encoding: "utf8" }).then((html) => res.send(html));

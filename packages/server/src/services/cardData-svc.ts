@@ -8,22 +8,17 @@ const CardDataSchema = new Schema<CardData> ({
         trim: true,
         unique: true
     },
-        title: {
+        name: {
         type: String,
         required: true,
         trim: true
     },
-        href: {
+        bio: {
         type: String,
         required: true,
         trim: true
     },
-        linkText: {
-        type: String,
-        required: true,
-        trim: true
-    },
-        description: {
+        tradingStyle: {
         type: String,
         required: true,
         trim: true
@@ -47,6 +42,7 @@ function create(json: CardData) {
 }
 
 function update(id: string, json: Partial<CardData>): Promise<CardData | null> {
+    console.log(`Updating card for ${id}`, json);
     return CardDataModel.findOneAndUpdate({ id }, json, {new:true}).exec();
 }
 

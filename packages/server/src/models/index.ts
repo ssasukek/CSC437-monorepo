@@ -12,9 +12,9 @@ const staticDir = process.env.STATIC || "public";
 
 app.use(express.static(staticDir));
 app.use(express.json());
-app.use("/api/cardDatas", cardDataRouter);
+// app.use("/api/cardDatas", cardDataRouter);
 app.use("/auth", auth );
-app.use("/api/cardData", authenticateUser, cardDataRouter);
+app.use("/api/cardDatas", authenticateUser, cardDataRouter);
 
 app.use("/app/", (req: Request, res: Response) => {
   const indexHtml = path.resolve(staticDir, "index.html");

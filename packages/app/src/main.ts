@@ -19,25 +19,25 @@ import { RegisterView } from "./views/register-view.ts";
 const routes = [
   {
     path: "/app/profile/:id",
-    view: (params: Switch.Params) => html`
-      <profile-view user-id=${params.id}></profile-view>
-    `,
-  },
+    view: (params: Switch.Params) =>  html`
+      <mu-auth provides="blazing:auth" redirect="/app/login">
+        <profile-view user-id=${params.id}></profile-view>
+      </mu-auth>`
+    },
   {
     path: "/app/edit/:id",
     view: (params: Switch.Params) =>
       html`<card-edit-view user-id=${params.id}></card-edit-view>`,
   },
-
   {
     path: "/",
     redirect: "/app",
   },
-  {
-    path: "/app/card/:id/edit",
-    view: (params: Switch.Params) =>
-      html`<card-edit-view card-id=${params.id}></card-edit-view>`,
-  },
+  // {
+  //   path: "/app/card/:id/edit",
+  //   view: (params: Switch.Params) =>
+  //     html`<card-edit-view card-id=${params.id}></card-edit-view>`,
+  // },
   {
     path: "/app/daytrades",
     view: () => html`<daytrades-view></daytrades-view>`,

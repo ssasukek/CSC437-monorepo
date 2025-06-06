@@ -34,8 +34,8 @@ export default function update(
   }
 }
 
-function loadCard(payload: { id: string }, user: Auth.User) {
-  return fetch(`/api/cardDatas/${payload.id}`, {
+function loadCard(_: { id: string }, user: Auth.User) {
+  return fetch(`/api/cardDatas/${user.username}`, {
     headers: Auth.headers(user),
   })
     .then((response: Response) => {
@@ -59,7 +59,7 @@ function saveCard(
   },
   user: Auth.User
 ) {
-  return fetch(`/api/travelers/${msg.id}`, {
+  return fetch(`/api/cardDatas/${user.username}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function saveCard(
   })
     .then((response: Response) => {
       if (response.status === 200) return response.json();
-      else throw new Error(`Failed to save card for ${msg.id}`);
+      else throw new Error(`Failed to save card for ${user.username}`);
     })
     .then((json: unknown) => {
       if (json) return json as CardData;
