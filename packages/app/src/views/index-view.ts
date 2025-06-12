@@ -5,20 +5,20 @@ import { Msg } from "../messages.ts";
 
 import page from "../styles/page.css.ts";
 
-import Fuse from "fuse.js";
-import { searchIndex } from "../components/search-index.ts";
+// import Fuse from "fuse.js";
+// import { searchIndex } from "../components/search-index.ts";
 
-const fuse = new Fuse(searchIndex, {
-  keys: ["title", "path" ,"content"],
-  threshold: 0.3,
-});
+// const fuse = new Fuse(searchIndex, {
+//   keys: ["title", "path", "content"],
+//   threshold: 0.3,
+// });
 
 export class IndexView extends View<Model, Msg> {
   static styles = [page];
   render() {
-    const search = this.model.search ?? "";
-    const results = search ? fuse.search(search).map((r) => r.item) : [];
-    
+    // const search = this.model.search ?? "";
+    // const results = search ? fuse.search(search).map((r) => r.item) : [];
+
     return html`
       <main>
         <div class="grid-cont">

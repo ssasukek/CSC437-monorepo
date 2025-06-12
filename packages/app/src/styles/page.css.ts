@@ -282,20 +282,17 @@ export default css`
     font: inherit;
   }
 
-  .search-results {
-    margin: 2rem;
-    padding: 1rem;
-    background: rgba(179, 176, 176, 0.05);
-    border-radius: 6px;
-  }
-
-  .search-results ul {
+  .search-res {
+    position: absolute;
+    top: 3rem;
+    background: grey;
+    border: 1px solid #ccc;
+    width: 50%;
+    height: 50%
+    padding: 0.75rem 1rem;
     list-style: none;
-    padding: 0;
-  }
-
-  .search-results li a {
-    color: var(--color-link);
-    text-decoration: underline;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font: inherit;
   }
 `;

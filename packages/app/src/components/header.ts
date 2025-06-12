@@ -4,6 +4,13 @@ import { Observer } from "@calpoly/mustang";
 import type { Msg } from "../messages";
 
 import page from "../styles/page.css.ts";
+import Fuse from "fuse.js";
+import { searchIndex } from "../components/search-index.ts";
+
+const fuse = new Fuse(searchIndex, {
+  keys: ["title", "path", "content"],
+  threshold: 0.3,
+});
 
 type AuthState = {
   user: {
@@ -17,7 +24,8 @@ export class HeaderElement extends LitElement {
   static styles = [page];
 
   @state()
-  
+  private results: typeof searchIndex = [];
+
   private auth: AuthState = {
     user: {
       authenticated: false,
@@ -30,13 +38,17 @@ export class HeaderElement extends LitElement {
 
   dispatchSearch(term: string) {
     this.searchTerm = term;
-    console.log("Search dispatched with:", term);
     this.sendSearch(term);
+    this.results = term ? fuse.search(term).map((r) => r.item) : [];
+    console.log("Search dispatched with:", term);    
   }
 
   private authObserver = new Observer<AuthState>(this, "blazing:auth");
 
-  private storeObserver = new Observer<{ send: (msg: Msg) => void }>(this, "blazing:store");
+  private storeObserver = new Observer<{ send: (msg: Msg) => void }>(
+    this,
+    "blazing:store"
+  );
 
   connectedCallback() {
     super.connectedCallback();
@@ -77,6 +89,23 @@ export class HeaderElement extends LitElement {
             this.dispatchSearch((e.target as HTMLInputElement).value)}
           }
         />
+        ${this.searchTerm && this.results.length
+          ? html`
+              <section class="search-res">
+                <h2>Search Results</h2>
+                <ul>
+                  ${this.results.map(
+                    (item) => html`
+                      <li>
+                        <a href=${item.path ?? "#"}>${item.title}</a>
+                        <p>${item.content}</p>
+                      </li>
+                    `
+                  )}
+                </ul>
+              </section>
+            `
+          : null}
 
         <label class="dark-toggle">
           <span class="icon-sun">☀️</span>
