@@ -30,6 +30,7 @@ export class HeaderElement extends LitElement {
 
   dispatchSearch(term: string) {
     this.searchTerm = term;
+    console.log("Search dispatched with:", term);
     this.sendSearch(term);
   }
 
@@ -72,16 +73,8 @@ export class HeaderElement extends LitElement {
           type="text"
           class="search-bar"
           placeholder="Search..."
-          @keydown=${(e: KeyboardEvent) => {
-            const input = e.target as HTMLInputElement;
-            if (e.key === "Enter") {
-              this.dispatchSearch(input.value)
-            }
-            if (e.key === "Escape") {
-              input.value = "";
-              this.dispatchSearch("");
-            }
-            }
+          @input=${(e: InputEvent) =>
+            this.dispatchSearch((e.target as HTMLInputElement).value)}
           }
         />
 

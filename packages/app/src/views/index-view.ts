@@ -5,22 +5,20 @@ import { Msg } from "../messages.ts";
 
 import page from "../styles/page.css.ts";
 
-const data = [
-  { title: "Orders" },
-  { title: "Day Trades" },
-  { title: "Brokerage Account" },
-  { title: "Strategies" },
-  { title: "Asset Type" },
-  { title: "Margins" },
-];
+import Fuse from "fuse.js";
+import { searchIndex } from "../components/search-index.ts";
 
-// const search = this.model.search ?? "";
-// const fuse = new Fuse(data, { keys: ["title"] });
-// const results = search ? fuse.search(search).map((r) => r.item) : data;
+const fuse = new Fuse(searchIndex, {
+  keys: ["title", "path" ,"content"],
+  threshold: 0.3,
+});
 
 export class IndexView extends View<Model, Msg> {
   static styles = [page];
   render() {
+    const search = this.model.search ?? "";
+    const results = search ? fuse.search(search).map((r) => r.item) : [];
+    
     return html`
       <main>
         <div class="grid-cont">
@@ -53,7 +51,10 @@ export class IndexView extends View<Model, Msg> {
       </main>
 
       <footer>
-        <p>2025 Day Trades Index. All Rights Reserved. Most infomation were obtained from Google and ChatGpt </p>
+        <p>
+          2025 Day Trades Index. All Rights Reserved. Most infomation were
+          obtained from Google and ChatGpt
+        </p>
       </footer>
     `;
   }

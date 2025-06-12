@@ -30,7 +30,7 @@ export default function update(
       break;
 
     case "search/set":
-      apply((model) => ({...model, search: message[1].term }));
+      apply(model => ({...model, search: message[1].term }));
       break;
       
     default:

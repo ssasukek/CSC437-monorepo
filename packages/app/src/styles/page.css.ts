@@ -281,4 +281,21 @@ export default css`
     cursor: pointer;
     font: inherit;
   }
+
+  .search-results {
+    margin: 2rem;
+    padding: 1rem;
+    background: rgba(179, 176, 176, 0.05);
+    border-radius: 6px;
+  }
+
+  .search-results ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .search-results li a {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
 `;
