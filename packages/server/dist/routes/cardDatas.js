@@ -49,8 +49,23 @@ router.post("/", (req, res) => {
 });
 router.put("/:id", (req, res) => {
   const id = req.params.id;
-  const updated = req.body;
-  import_cardData_svc.default.update(id, updated).then((card) => res.json(card)).catch((err) => res.status(404).send(err));
+  const cardData = { ...req.body, id };
+  import_cardData_svc.default.update(id, cardData).then((card) => {
+    if (card) {
+      res.json(card);
+    } else {
+      return import_cardData_svc.default.create(cardData);
+    }
+  }).then((card) => {
+    if (card && !res.headersSent) {
+      res.status(201).json(card);
+    }
+  }).catch((err) => {
+    console.error("Error in PUT route:", err);
+    if (!res.headersSent) {
+      res.status(500).send(err);
+    }
+  });
 });
 router.delete("/:id", (req, res) => {
   import_cardData_svc.default.remove(req.params.id).then(() => res.status(204).end()).catch((err) => res.status(404).send(err));

@@ -43,7 +43,11 @@ function create(json: CardData) {
 
 function update(id: string, json: Partial<CardData>): Promise<CardData | null> {
     console.log(`Updating card for ${id}`, json);
-    return CardDataModel.findOneAndUpdate({ id }, json, {new:true}).exec();
+    return CardDataModel.findOneAndUpdate(
+      { id },
+      { $set: json },
+      { new: true, upsert: true },
+    ).exec();
 }
 
 function remove(id: string): Promise<void> {

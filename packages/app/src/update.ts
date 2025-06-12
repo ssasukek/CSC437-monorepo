@@ -28,21 +28,36 @@ export default function update(
           if (onFailure) onFailure(error);
         });
       break;
+
+    case "search/set":
+      apply((model) => ({...model, search: message[1].term }));
+      break;
       
     default:
       throw new Error(`Unhandled Auth message "${message[0]}"`);
   }
 }
 
-function loadCard(_: { id: string }, user: Auth.User) {
-  return fetch(`/api/cardDatas/${user.username}`, {
-    headers: Auth.headers(user),
+function loadCard({ id }: { id: string }, user: Auth.User) {
+  return fetch(`/api/cardDatas/${id}`, {
+    headers: Auth.headers(user)
   })
-    .then((response: Response) => {
+    .then(async(response: Response) => {
       if (response.status === 200) {
         return response.json();
-      }
-      return undefined;
+      } else if (response.status === 404) {
+        // Create a default card if not found
+        const defaultCard: CardData = {
+          id: id,
+          name: "",
+          bio: "",
+          tradingStyle: "",
+        };
+        console.warn(`Card not found for ${id}, creating new one...`); 
+        return saveCard({ id, card: defaultCard }, user);
+      } else {
+        throw new Error(`Unexpected status ${response.status}`);
+      } 
     })
     .then((json: unknown) => {
       if (json) {
@@ -59,13 +74,14 @@ function saveCard(
   },
   user: Auth.User
 ) {
-  return fetch(`/api/cardDatas/${user.username}`, {
+  const payload = { ...msg.card, id: msg.id };
+  return fetch(`/api/cardDatas/${msg.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       ...Auth.headers(user),
     },
-    body: JSON.stringify(msg.card),
+    body: JSON.stringify(payload),
   })
     .then((response: Response) => {
       if (response.status === 200) return response.json();

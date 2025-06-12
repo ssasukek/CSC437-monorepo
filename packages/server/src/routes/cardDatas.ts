@@ -30,13 +30,36 @@ router.post("/", (req: Request, res: Response) => {
     });
 
 router.put("/:id", (req: Request, res: Response) => {
-    const id = req.params.id;
-    const updated: CardData = req.body;
-    CardDataSvc
-        .update(id, updated)
-        .then((card) => res.json(card))
-        .catch((err) => res.status(404).send(err));
+  const id = req.params.id;
+  // const updated: CardData = req.body;
+  const cardData: CardData = { ...req.body, id };
+
+  // CardDataSvc
+  //     .update(id, updated)
+  //     .then((card) => res.json(card))
+  //     .catch((err) => res.status(404).send(err));
+  // });
+  CardDataSvc.update(id, cardData)
+    .then((card) => {
+      if (card) {
+        res.json(card);
+      } else {
+        return CardDataSvc.create(cardData);
+      }
+    })
+    .then((card) => {
+      if (card && !res.headersSent) {
+        res.status(201).json(card);
+      }
+    })
+    .catch((err) => {
+      console.error("Error in PUT route:", err);
+      if (!res.headersSent) {
+        res.status(500).send(err);
+      }
     });
+});
+
 
 router.delete("/:id", (req: Request, res: Response) => {
     CardDataSvc

@@ -5,6 +5,19 @@ import { Msg } from "../messages.ts";
 
 import page from "../styles/page.css.ts";
 
+const data = [
+  { title: "Orders" },
+  { title: "Day Trades" },
+  { title: "Brokerage Account" },
+  { title: "Strategies" },
+  { title: "Asset Type" },
+  { title: "Margins" },
+];
+
+// const search = this.model.search ?? "";
+// const fuse = new Fuse(data, { keys: ["title"] });
+// const results = search ? fuse.search(search).map((r) => r.item) : data;
+
 export class IndexView extends View<Model, Msg> {
   static styles = [page];
   render() {
@@ -40,7 +53,7 @@ export class IndexView extends View<Model, Msg> {
       </main>
 
       <footer>
-        <p>2025 Day Trades Index. All Rights Reserved.</p>
+        <p>2025 Day Trades Index. All Rights Reserved. Most infomation were obtained from Google and ChatGpt </p>
       </footer>
     `;
   }

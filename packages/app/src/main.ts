@@ -16,6 +16,13 @@ import { LoginView } from "./views/login-view.ts";
 import { RegisterFormElement } from "./components/auth/register-form.ts";
 import { RegisterView } from "./views/register-view.ts";
 
+import { DayTrades } from "./views/daytrades-view.ts";
+import { Margins } from "./views/margins-view.ts";
+import { Order } from "./views/order-view.ts";
+import { BrokerageAcc } from "./views/brokerageAcc-view.ts";
+import { Strategies } from "./views/strategies-view.ts";
+import { Asset } from "./views/assetTypes-view.ts";
+
 const routes = [
   {
     path: "/app/profile/:id",
@@ -33,27 +40,23 @@ const routes = [
     path: "/",
     redirect: "/app",
   },
-  // {
-  //   path: "/app/card/:id/edit",
-  //   view: (params: Switch.Params) =>
-  //     html`<card-edit-view card-id=${params.id}></card-edit-view>`,
-  // },
   {
     path: "/app/daytrades",
     view: () => html`<daytrades-view></daytrades-view>`,
   },
-  { path: "/app/orders", view: () => html`<orders-view></orders-view>` },
+  { path: "/app/orders", 
+    view: () => html`<order-view></order-view>` },
   {
     path: "/app/assetTypes",
-    view: () => html`<assetTypes-view></asseTypes-view>`,
+    view: () => html`<asset-view></asset-view>`,
   },
   {
     path: "/app/strategies",
     view: () => html`<strategies-view></strategies-view>`,
   },
   {
-    path: "/app/brokerage",
-    view: () => html`<brokerageAcc-view></brokerageAcc-view>`,
+    path: "/app/brokerageAcc",
+    view: () => html`<brokerage-view></brokerage-view>`,
   },
   { path: "/app/margins", view: () => html`<margins-view></margins-view>` },
   {
@@ -93,4 +96,11 @@ define({
   "login-view": LoginView,
   "register-view": RegisterView,
   "register-form": RegisterFormElement,
+
+  "daytrades-view": DayTrades,
+  "margins-view": Margins,
+  "order-view": Order,
+  "strategies-view": Strategies,
+  "brokerage-view": BrokerageAcc,
+  "asset-view": Asset,
 });

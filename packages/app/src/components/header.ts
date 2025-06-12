@@ -1,6 +1,7 @@
 import { html, LitElement } from "lit";
 import { state } from "lit/decorators.js";
 import { Observer } from "@calpoly/mustang";
+import type { Msg } from "../messages";
 
 import page from "../styles/page.css.ts";
 
@@ -16,17 +17,35 @@ export class HeaderElement extends LitElement {
   static styles = [page];
 
   @state()
+  
   private auth: AuthState = {
     user: {
       authenticated: false,
-      username: ""
-    }
+      username: "",
+    },
   };
+
+  private sendSearch = (_term: string) => {};
+  searchTerm = "";
+
+  dispatchSearch(term: string) {
+    this.searchTerm = term;
+    this.sendSearch(term);
+  }
 
   private authObserver = new Observer<AuthState>(this, "blazing:auth");
 
+  private storeObserver = new Observer<{ send: (msg: Msg) => void }>(this, "blazing:store");
+
   connectedCallback() {
     super.connectedCallback();
+
+    this.storeObserver.observe(({ send }) => {
+      this.sendSearch = (term: string) => {
+        send(["search/set", { term }]);
+      };
+    });
+
     this.authObserver.observe((auth) => {
       this.auth = auth;
     });
@@ -49,7 +68,22 @@ export class HeaderElement extends LitElement {
 
     return html`
       <header>
-        <input type="search" class="search-bar" placeholder="Search..." />
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="Search..."
+          @keydown=${(e: KeyboardEvent) => {
+            const input = e.target as HTMLInputElement;
+            if (e.key === "Enter") {
+              this.dispatchSearch(input.value)
+            }
+            if (e.key === "Escape") {
+              input.value = "";
+              this.dispatchSearch("");
+            }
+            }
+          }
+        />
 
         <label class="dark-toggle">
           <span class="icon-sun">☀️</span>
@@ -77,7 +111,7 @@ export class HeaderElement extends LitElement {
                 <span class="user-name">${username}</span>
                 <div class="dropdown-content">
                   <a href="/app/profile/${username}" class="dropdown-item">
-                  Account Info
+                    Account Info
                   </a>
                   <button class="dropdown-item" @click=${this.signOut}>
                     Sign Out
@@ -96,6 +130,7 @@ export class HeaderElement extends LitElement {
             <a href="/app/brokerageAcc">Brokerage Account</a>
             <a href="/app/strategies">Strategies</a>
             <a href="/app/assetTypes">Asset Type</a>
+            <a href="/app/margins">Margins</a>
           </div>
         </div>
       </header>

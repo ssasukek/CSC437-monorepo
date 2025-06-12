@@ -12,35 +12,47 @@ import page from "../styles/profile.css.ts";
 
 export class CardEditView extends View<Model, Msg> {
   static styles = [page];
-  
+
   static uses = define({
     "mu-form": Form.Element,
   });
 
-  @property({ attribute: "card-id" }) userid?: string = "";
+  @property({ attribute: "user-id" }) userid?: string;
 
   @state()
   get card(): CardData | undefined {
     return this.model.card;
   }
 
-render() {
+  connectedCallback() {
+    super.connectedCallback();
+    if (this.userid) {
+      this.dispatchMessage(["card/select", { id: this.userid }]);
+    }
+  }
+
+  render() {
     return html`
       <main>
         <mu-form
           .init=${this.card ?? { name: "", bio: "", tradingStyle: "" }}
-          @mu-form:submit=${this.handleSubmit}>
+          @mu-form:submit=${this.handleSubmit}
+        >
           <label>
             Name
-            <input type="text" name="name" />
+            <input type="text" name="name" .value=${this.card?.name ?? ""} />
           </label>
           <label>
             Bio
-            <textarea name="bio"></textarea>
+            <textarea name="bio" .value=${this.card?.bio ?? ""}></textarea>
           </label>
           <label>
             Trading Style
-            <input type="text" name="tradingStyle" />
+            <input
+              type="text"
+              name="tradingStyle"
+              .value=${this.card?.tradingStyle ?? ""}
+            />
           </label>
         </mu-form>
       </main>
@@ -49,18 +61,20 @@ render() {
 
   handleSubmit(event: Form.SubmitEvent<CardData>) {
     console.log("Form submit:", event.detail);
+    const id = this.userid ?? "";
     this.dispatchMessage([
       "card/save",
       {
-        id: this.id ?? "",
+        id,
         card: event.detail,
-        onSuccess: () =>
+        onSuccess: () => {
+          this.dispatchMessage(["card/select", { id }]);
           History.dispatch(this, "history/navigate", {
-            href: `/app/profile/${this.id}`
-          }),
-        onFailure: (error: Error) =>
-          console.log("ERROR:", error)
-      }
+            href: `/app/profile/${id}`,
+          });
+        },
+        onFailure: (error: Error) => console.log("Save Failed:", error),
+      },
     ]);
   }
 }

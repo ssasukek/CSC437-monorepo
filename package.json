@@ -10,5 +10,8 @@
   "license": "ISC",
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "fuse.js": "^7.1.0"
+  }
 }
